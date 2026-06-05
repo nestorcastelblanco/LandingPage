@@ -5,539 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nexus CSA | Software, Automatización e IA para Empresas</title>
   <meta name="description" content="Nexus CSA: Consultoría, Software y Automatización. Conectamos empresas con soluciones inteligentes de software, IA y automatización para transformar negocios." />
-
   <meta property="og:title" content="Nexus CSA | Software, Automatización e IA para Empresas" />
   <meta property="og:description" content="Conectamos empresas con soluciones inteligentes de software, IA y automatización." />
   <meta property="og:image" content="nexus.png" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="nexus-csa-logo.svg" type="image/svg+xml" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --azul: #294959;
-      --azul-oscuro: #1a2f3a;
-      --azul-claro: #e8f4ef;
-      --verde: #02b267;
-      --verde-muted: rgba(2, 178, 103, 0.12);
-      --gris: #f5f7fb;
-      --texto: #1f2937;
-      --muted: #6b7280;
-      --blanco: #ffffff;
-      --sombra: 0 20px 45px rgba(41, 73, 89, 0.14);
-      --radio: 22px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--texto);
-      background: var(--gris);
-      line-height: 1.6;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-
-    .contenedor {
-      width: min(1180px, 92%);
-      margin: auto;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      border: none;
-      font-family: inherit;
-      font-size: 15px;
-    }
-
-    .btn-primary {
-      background: var(--verde);
-      color: var(--blanco);
-      box-shadow: 0 12px 25px rgba(2, 178, 103, 0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 34px rgba(2, 178, 103, 0.42);
-    }
-
-    .btn-secondary {
-      background: var(--blanco);
-      color: var(--azul);
-      border: 1px solid rgba(41, 73, 89, 0.16);
-    }
-    .btn-secondary:hover {
-      background: var(--azul-claro);
-    }
-
-    .badge {
-      display: inline-flex;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--verde-muted);
-      color: var(--verde);
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    /* ── Header ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(41, 73, 89, 0.08);
-    }
-
-    .nav {
-      height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      color: var(--azul-oscuro);
-      font-size: 20px;
-    }
-
-    .logo em { color: var(--verde); font-style: normal; }
-
-    .logo-svg {
-      height: 60px;
-      width: auto;
-      flex-shrink: 0;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-    }
-    .menu a:hover { color: var(--azul); }
-
-    /* ── Hero ── */
-    .hero {
-      padding: 96px 0 72px;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(2, 178, 103, 0.1), transparent 36%),
-        radial-gradient(circle at top left, rgba(41, 73, 89, 0.06), transparent 28%),
-        linear-gradient(135deg, #ffffff 0%, #e8f4ef 100%);
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 5vw, 62px);
-      line-height: 1.08;
-      color: var(--azul-oscuro);
-      margin-bottom: 22px;
-      letter-spacing: -1.5px;
-    }
-    .hero h1 span { color: var(--verde); }
-
-    .hero p {
-      font-size: 18px;
-      color: var(--muted);
-      margin-bottom: 28px;
-      max-width: 620px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .stat {
-      background: var(--blanco);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 8px 24px rgba(41, 73, 89, 0.08);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-    }
-    .stat strong { display: block; font-size: 22px; color: var(--azul); }
-    .stat span { color: var(--muted); font-size: 13px; }
-
-    /* ── Hero visual ── */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-img {
-      max-width: 100%;
-      max-height: 480px;
-      width: auto;
-      filter: drop-shadow(0 24px 64px rgba(41, 73, 89, 0.28));
-    }
-
-    /* ── Mockup ── */
-    .mockup {
-      background: var(--blanco);
-      border-radius: 32px;
-      padding: 18px;
-      box-shadow: var(--sombra);
-      transform: rotate(1.5deg);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-    }
-
-    .browser-bar {
-      display: flex;
-      gap: 7px;
-      padding: 10px;
-      background: #f1f5f9;
-      border-radius: 18px 18px 0 0;
-    }
-
-    .dot { width: 12px; height: 12px; border-radius: 50%; background: #cbd5e1; }
-
-    .mockup-screen {
-      background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
-      min-height: 420px;
-      border-radius: 0 0 22px 22px;
-      padding: 26px;
-      color: var(--blanco);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mockup-screen::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: rgba(2, 178, 103, 0.18);
-    }
-
-    .mockup-card {
-      background: rgba(255, 255, 255, 0.11);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 22px;
-      padding: 20px;
-      margin-bottom: 16px;
-      backdrop-filter: blur(8px);
-      position: relative;
-      z-index: 1;
-    }
-    .mockup-card h3 { font-size: 20px; margin-bottom: 8px; }
-    .mockup-card p { font-size: 13px; opacity: 0.82; }
-
-    .mockup-chips {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .chip {
-      height: 96px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .chip span {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-
-    /* ── Sections ── */
-    section { padding: 78px 0; }
-
-    .section-title { text-align: center; margin-bottom: 46px; }
-    .section-title h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      color: var(--azul-oscuro);
-      margin-bottom: 12px;
-      letter-spacing: -0.8px;
-    }
-    .section-title p { color: var(--muted); max-width: 760px; margin: auto; }
-
-    .bg-alt { background: #f0f9f5; }
-
-    /* ── Cards ── */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--blanco);
-      border-radius: var(--radio);
-      padding: 28px;
-      box-shadow: 0 12px 32px rgba(41, 73, 89, 0.07);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-      position: relative;
-      overflow: hidden;
-      transition: 0.25s ease;
-    }
-    .card:hover { transform: translateY(-6px); box-shadow: var(--sombra); }
-
-    .card.destacado { border: 2px solid var(--verde); }
-
-    .tag {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      background: var(--verde-muted);
-      color: var(--verde);
-      font-size: 12px;
-      font-weight: 800;
-      padding: 7px 12px;
-      border-radius: 999px;
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 26px;
-      margin-bottom: 18px;
-    }
-
-    .card h3 { font-size: 21px; color: var(--azul-oscuro); margin-bottom: 10px; }
-    .card p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
-
-    .precio { font-size: 27px; font-weight: 800; color: var(--azul); margin-bottom: 16px; }
-    .precio small { font-size: 13px; color: var(--muted); font-weight: 500; }
-
-    .lista { list-style: none; display: grid; gap: 10px; margin-bottom: 24px; }
-    .lista li { display: flex; align-items: flex-start; gap: 9px; color: #374151; font-size: 14px; }
-    .lista li::before { content: '✓'; color: var(--verde); font-weight: 900; flex-shrink: 0; }
-
-    /* ── Tabla ── */
-    .comparador {
-      background: var(--blanco);
-      border-radius: var(--radio);
-      overflow: hidden;
-      box-shadow: var(--sombra);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-    }
-
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 18px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
-    th { background: var(--azul-oscuro); color: var(--blanco); font-weight: 700; }
-    td strong { color: var(--azul); }
-
-    /* ── Proceso ── */
-    .proceso { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-
-    .paso {
-      background: var(--blanco);
-      padding: 24px;
-      border-radius: var(--radio);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-      box-shadow: 0 12px 32px rgba(41, 73, 89, 0.06);
-    }
-
-    .paso-num {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      background: var(--verde);
-      color: white;
-      border-radius: 15px;
-      font-weight: 800;
-      margin-bottom: 16px;
-      font-size: 18px;
-    }
-
-    /* ── FAQ ── */
-    .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-
-    .faq {
-      background: var(--blanco);
-      padding: 24px;
-      border-radius: var(--radio);
-      border: 1px solid rgba(41, 73, 89, 0.08);
-    }
-    .faq h3 { color: var(--azul-oscuro); margin-bottom: 8px; font-size: 17px; }
-    .faq p { color: var(--muted); font-size: 14px; }
-
-    /* ── CTA Final ── */
-    .cta-final {
-      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul) 100%);
-      color: white;
-      border-radius: 34px;
-      padding: 56px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: center;
-      box-shadow: var(--sombra);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-final::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      right: -80px;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(2, 178, 103, 0.14);
-      pointer-events: none;
-    }
-    .cta-final h2 { font-size: clamp(26px, 3.5vw, 38px); line-height: 1.15; margin-bottom: 12px; position: relative; }
-    .cta-final p { color: rgba(255,255,255,0.82); position: relative; }
-
-    /* ── Formulario contacto ── */
-    .contacto-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 50px;
-      align-items: start;
-    }
-    .form-contacto { display: flex; flex-direction: column; gap: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-grupo { display: flex; flex-direction: column; gap: 6px; }
-    .form-grupo label { font-size: 14px; font-weight: 600; color: var(--azul-oscuro); }
-    .form-grupo input, .form-grupo textarea {
-      padding: 12px 16px;
-      border: 1.5px solid rgba(41,73,89,0.18);
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px;
-      color: var(--texto);
-      background: var(--blanco);
-      transition: border-color 0.2s;
-      outline: none;
-      resize: none;
-    }
-    .form-grupo input:focus, .form-grupo textarea:focus { border-color: var(--verde); }
-    .btn-full { width: 100%; justify-content: center; }
-    .form-status { font-size: 14px; text-align: center; min-height: 20px; margin: 0; }
-    .form-status.ok { color: var(--verde); }
-    .form-status.error { color: #ef4444; }
-    .contacto-info {
-      background: var(--blanco);
-      border-radius: var(--radio);
-      padding: 36px;
-      box-shadow: var(--sombra);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .contacto-info h3 { font-size: 20px; color: var(--azul-oscuro); }
-    .contacto-info p { color: var(--muted); font-size: 15px; }
-    .contacto-datos { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-    .contacto-datos p { font-size: 15px; color: var(--texto); }
-
-    /* ── Footer ── */
-    footer { background: var(--azul-oscuro); color: white; padding: 36px 0; text-align: center; }
-    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; }
-    .footer-logo em { color: var(--verde); font-style: normal; }
-    footer p { color: rgba(255,255,255,0.6); font-size: 13px; }
-
-    /* ── WhatsApp ── */
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 50;
-      background: #25d366;
-      color: white;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 28px;
-      box-shadow: 0 18px 38px rgba(37, 211, 102, 0.38);
-      transition: 0.25s ease;
-    }
-    .whatsapp:hover { transform: scale(1.1); }
-
-    /* ── Responsive ── */
-    @media (max-width: 960px) {
-      .hero-grid, .cta-final { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      .proceso { grid-template-columns: repeat(2, 1fr); }
-      .menu { display: none; }
-    }
-
-    @media (max-width: 650px) {
-      .cards, .proceso, .faq-grid, .hero-stats { grid-template-columns: 1fr; }
-      .contacto-grid, .form-row { grid-template-columns: 1fr; }
-      section { padding: 56px 0; }
-      .hero { padding: 60px 0 48px; }
-      .cta-final { padding: 34px; grid-template-columns: 1fr; }
-      table { min-width: 780px; }
-      .comparador { overflow-x: auto; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <header>
     <div class="contenedor nav">
-      <a href="#inicio" class="logo">
+      <a href="index.html" class="logo">
         <img class="logo-svg" src="nexus-csa-logo.svg" alt="Nexus CSA" />
       </a>
-
       <nav class="menu">
-        <a href="#servicios">Servicios</a>
-        <a href="#soluciones">Soluciones</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#planes">Planes</a>
-        <a href="#contacto">Contacto</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="planes.html">Planes</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="contacto.html">Contacto</a>
       </nav>
-
       <a class="btn btn-primary" href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA" target="_blank">Hablar con un asesor</a>
     </div>
   </header>
@@ -550,15 +40,11 @@
         <div>
           <span class="badge">Consultoría, Software y Automatización</span>
           <h1>Software e inteligencia artificial para empresas que quieren <span>crecer</span></h1>
-          <p>
-            Conectamos tu empresa con soluciones tecnológicas inteligentes. Desarrollamos software a medida, automatizamos procesos e implementamos IA para transformar tu operación.
-          </p>
-
+          <p>Conectamos tu empresa con soluciones tecnológicas inteligentes. Desarrollamos software a medida, automatizamos procesos e implementamos IA para transformar tu operación.</p>
           <div class="hero-actions">
-            <a href="#soluciones" class="btn btn-primary">Conocer soluciones</a>
-            <a href="#contacto" class="btn btn-secondary">Hablar con un asesor</a>
+            <a href="planes.html" class="btn btn-primary">Ver planes y precios</a>
+            <a href="contacto.html" class="btn btn-secondary">Hablar con un asesor</a>
           </div>
-
           <div class="hero-stats">
             <div class="stat">
               <strong>IA</strong>
@@ -574,14 +60,13 @@
             </div>
           </div>
         </div>
-
         <div class="hero-visual">
           <img src="nexus-transparente.png" alt="Nexus CSA" class="hero-img" />
         </div>
       </div>
     </section>
 
-    <!-- Servicios / Capacidades -->
+    <!-- Servicios -->
     <section id="servicios">
       <div class="contenedor">
         <div class="section-title">
@@ -589,332 +74,68 @@
           <h2>Tecnología inteligente para procesos más eficientes</h2>
           <p>Más que desarrollo de software: conectamos tu empresa con soluciones que automatizan, optimizan y hacen crecer tu negocio.</p>
         </div>
-
         <div class="cards">
           <article class="card">
             <div class="icon">🤖</div>
             <h3>Inteligencia Artificial</h3>
             <p>Implementamos IA para automatizar decisiones, analizar datos y mejorar la eficiencia operativa de tu empresa.</p>
           </article>
-
           <article class="card">
             <div class="icon">⚙️</div>
             <h3>Automatización de Procesos</h3>
             <p>Eliminamos tareas repetitivas y optimizamos flujos de trabajo para que tu equipo se enfoque en lo que importa.</p>
           </article>
-
           <article class="card">
             <div class="icon">💻</div>
             <h3>Software a Medida</h3>
             <p>Desarrollamos exactamente la solución que tu negocio necesita, sin código genérico ni funcionalidades innecesarias.</p>
           </article>
-
           <article class="card">
             <div class="icon">☁️</div>
             <h3>Soluciones Cloud</h3>
             <p>Infraestructura escalable, segura y siempre disponible en la nube para que tu negocio opere sin límites.</p>
           </article>
-
           <article class="card">
             <div class="icon">🔗</div>
             <h3>Integración de Sistemas</h3>
             <p>Conectamos tus aplicaciones, plataformas y bases de datos para centralizar la información y eliminar silos.</p>
           </article>
-
           <article class="card">
             <div class="icon">🔒</div>
             <h3>Seguridad y Continuidad</h3>
             <p>Sistemas robustos, seguros y con soporte continuo para garantizar la operación 24/7 de tu negocio.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- Planes / Soluciones -->
-    <section id="soluciones" class="bg-alt">
-      <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">Planes comerciales</span>
-          <h2>Elige la solución que impulsa tu empresa</h2>
-          <p>Planes diseñados para empresas en diferentes etapas digitales, desde el diagnóstico inicial hasta soluciones enterprise.</p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <span class="tag">Primer paso</span>
-            <div class="icon">🔍</div>
-            <h3>Plan Diagnóstico</h3>
-            <p>Evaluamos tu madurez tecnológica y diseñamos la hoja de ruta digital para tu empresa.</p>
-            <div class="precio">$800.000 <small>desde</small></div>
-            <ul class="lista">
-              <li>Auditoría tecnológica completa</li>
-              <li>Mapa de procesos y brechas</li>
-              <li>Hoja de ruta de transformación</li>
-              <li>Recomendación de soluciones</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20Plan%20Diagn%C3%B3stico%20de%20Nexus%20CSA" target="_blank" class="btn btn-secondary">Iniciar diagnóstico</a>
-          </article>
-
-          <article class="card">
-            <div class="icon">🚀</div>
-            <h3>Plan MVP</h3>
-            <p>Primera versión funcional de tu producto o plataforma digital para validar y crecer.</p>
-            <div class="precio">$3.500.000 <small>desde</small></div>
-            <ul class="lista">
-              <li>Diseño de arquitectura técnica</li>
-              <li>Desarrollo de funcionalidades core</li>
-              <li>Despliegue en producción</li>
-              <li>Documentación técnica</li>
-              <li>Soporte post-lanzamiento</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20Plan%20MVP%20de%20Nexus%20CSA" target="_blank" class="btn btn-secondary">Lanzar mi MVP</a>
-          </article>
-
-          <article class="card destacado">
-            <span class="tag">Más popular</span>
-            <div class="icon">🏆</div>
-            <h3>Plan Empresa</h3>
-            <p>Software empresarial completo con módulos clave, integraciones y panel administrativo.</p>
-            <div class="precio">$6.500.000 <small>desde</small></div>
-            <ul class="lista">
-              <li>Módulos según tu negocio</li>
-              <li>Integraciones con sistemas actuales</li>
-              <li>Panel administrativo completo</li>
-              <li>Usuarios, roles y permisos</li>
-              <li>Capacitación al equipo</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20Plan%20Empresa%20de%20Nexus%20CSA" target="_blank" class="btn btn-primary">Quiero esta solución</a>
-          </article>
-
-          <article class="card">
-            <div class="icon">⚙️</div>
-            <h3>Plan Automatiza</h3>
-            <p>Automatiza procesos operativos críticos para ganar eficiencia y reducir errores humanos.</p>
-            <div class="precio">$5.000.000 <small>desde</small></div>
-            <ul class="lista">
-              <li>Mapeo y rediseño de procesos</li>
-              <li>Automatización RPA o custom</li>
-              <li>Integración con herramientas actuales</li>
-              <li>Monitoreo de flujos automatizados</li>
-              <li>Capacitación operativa</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20Plan%20Automatiza%20de%20Nexus%20CSA" target="_blank" class="btn btn-secondary">Automatizar procesos</a>
-          </article>
-
-          <article class="card">
-            <div class="icon">🤖</div>
-            <h3>Plan IA Aplicada</h3>
-            <p>Integra inteligencia artificial en tu negocio para tomar mejores decisiones y escalar.</p>
-            <div class="precio">$9.500.000 <small>desde</small></div>
-            <ul class="lista">
-              <li>Análisis de casos de uso IA</li>
-              <li>Modelos personalizados o preentrenados</li>
-              <li>Integración en flujos existentes</li>
-              <li>Dashboard de métricas IA</li>
-              <li>Acompañamiento continuo</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20Plan%20IA%20Aplicada%20de%20Nexus%20CSA" target="_blank" class="btn btn-secondary">Implementar IA</a>
-          </article>
-
-          <article class="card">
-            <div class="icon">🏢</div>
-            <h3>Plan Enterprise</h3>
-            <p>Solución tecnológica integral diseñada para empresas con operaciones complejas y escala.</p>
-            <div class="precio">A consultar</div>
-            <ul class="lista">
-              <li>Arquitectura técnica a medida</li>
-              <li>Equipo dedicado de desarrollo</li>
-              <li>Integraciones enterprise</li>
-              <li>SLA garantizado</li>
-              <li>Soporte y evolución continua</li>
-            </ul>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20propuesta%20Enterprise%20de%20Nexus%20CSA" target="_blank" class="btn btn-secondary">Solicitar propuesta</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Selector -->
-    <section id="selector">
-      <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">¿Por dónde empezar?</span>
-          <h2>Encuentra la solución correcta para tu empresa</h2>
-          <p>Cada empresa es diferente. Te ayudamos a identificar el punto de partida ideal según tu situación actual.</p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <div class="icon">🏢</div>
-            <h3>Quiero digitalizar mi empresa</h3>
-            <p>Necesitas sistemas, flujos digitales y una base tecnológica sólida para operar con eficiencia.</p>
-            <div class="precio"><small>Recomendado:</small><br>Plan Empresa</div>
-          </article>
-
-          <article class="card">
-            <div class="icon">⚙️</div>
-            <h3>Necesito automatizar procesos</h3>
-            <p>Tienes procesos manuales o repetitivos que consumen tiempo y generan errores en tu operación.</p>
-            <div class="precio"><small>Recomendado:</small><br>Plan Automatiza</div>
-          </article>
-
-          <article class="card">
-            <div class="icon">🤖</div>
-            <h3>Quiero usar IA en mi negocio</h3>
-            <p>Buscas aprovechar la inteligencia artificial para optimizar decisiones, análisis o atención al cliente.</p>
-            <div class="precio"><small>Recomendado:</small><br>Plan IA Aplicada</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Servicios recurrentes -->
-    <section id="mensuales" class="bg-alt">
-      <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">Servicios recurrentes</span>
-          <h2>Soporte continuo para mantener y escalar tu solución</h2>
-          <p>La tecnología no es un proyecto puntual, es una evolución constante. Acompañamos a tu empresa mes a mes.</p>
-        </div>
-
-        <div class="comparador">
-          <table>
-            <thead>
-              <tr>
-                <th>Servicio mensual</th>
-                <th>Precio desde</th>
-                <th>Beneficio principal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Soporte técnico básico</strong></td>
-                <td>$200.000/mes</td>
-                <td>Tu solución activa, monitoreada y con respuesta rápida a incidencias.</td>
-              </tr>
-              <tr>
-                <td><strong>Mantenimiento y actualizaciones</strong></td>
-                <td>$400.000/mes</td>
-                <td>Mejoras menores, parches de seguridad y actualizaciones tecnológicas.</td>
-              </tr>
-              <tr>
-                <td><strong>Monitoreo 24/7</strong></td>
-                <td>$600.000/mes</td>
-                <td>Supervisión continua de sistemas, alertas automáticas y respuesta proactiva.</td>
-              </tr>
-              <tr>
-                <td><strong>Gestión de automatizaciones</strong></td>
-                <td>$900.000/mes</td>
-                <td>Monitoreo, ajuste y mejora continua de los flujos automatizados.</td>
-              </tr>
-              <tr>
-                <td><strong>Consultoría IA mensual</strong></td>
-                <td>$1.500.000/mes</td>
-                <td>Asesoría continua, optimización de modelos y nuevos casos de uso.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comparador de planes -->
-    <section id="planes">
-      <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">Comparador</span>
-          <h2>Tabla rápida de soluciones</h2>
-          <p>Valores base orientativos. El precio final depende del alcance, integraciones y funcionalidades de cada proyecto.</p>
-        </div>
-
-        <div class="comparador">
-          <table>
-            <thead>
-              <tr>
-                <th>Solución</th>
-                <th>Inversión desde</th>
-                <th>Tiempo estimado</th>
-                <th>Enfoque</th>
-                <th>Ideal para</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Diagnóstico</strong></td>
-                <td>$800.000</td>
-                <td>1 a 2 semanas</td>
-                <td>Evaluación y hoja de ruta</td>
-                <td>Inicio de transformación digital</td>
-              </tr>
-              <tr>
-                <td><strong>MVP</strong></td>
-                <td>$3.500.000</td>
-                <td>3 a 6 semanas</td>
-                <td>Primera versión funcional</td>
-                <td>Startups y nuevos productos</td>
-              </tr>
-              <tr>
-                <td><strong>Empresa</strong></td>
-                <td>$6.500.000</td>
-                <td>6 a 12 semanas</td>
-                <td>Software empresarial completo</td>
-                <td>Empresas con procesos establecidos</td>
-              </tr>
-              <tr>
-                <td><strong>Automatiza</strong></td>
-                <td>$5.000.000</td>
-                <td>4 a 8 semanas</td>
-                <td>Automatización operativa</td>
-                <td>Negocios con procesos repetitivos</td>
-              </tr>
-              <tr>
-                <td><strong>IA Aplicada</strong></td>
-                <td>$9.500.000</td>
-                <td>8 a 16 semanas</td>
-                <td>Inteligencia artificial</td>
-                <td>Empresas que quieren escalar con IA</td>
-              </tr>
-              <tr>
-                <td><strong>Enterprise</strong></td>
-                <td>A consultar</td>
-                <td>A definir</td>
-                <td>Solución tecnológica integral</td>
-                <td>Operaciones complejas y de escala</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="text-align:center; margin-top:36px;">
+          <a href="servicios.html" class="btn btn-secondary">Ver todos los servicios →</a>
         </div>
       </div>
     </section>
 
     <!-- Proceso -->
-    <section id="proceso" class="bg-alt">
+    <section class="bg-alt" id="proceso">
       <div class="contenedor">
         <div class="section-title">
           <span class="badge">Metodología</span>
           <h2>Proceso claro, ágil y orientado a resultados</h2>
           <p>Trabajamos con una ruta ordenada para garantizar que cada proyecto entregue valor real a tu empresa.</p>
         </div>
-
         <div class="proceso">
           <div class="paso">
             <div class="paso-num">1</div>
             <h3>Diagnóstico</h3>
             <p>Analizamos tu empresa, procesos actuales y objetivos para diseñar la solución tecnológica óptima.</p>
           </div>
-
           <div class="paso">
             <div class="paso-num">2</div>
             <h3>Diseño de Solución</h3>
             <p>Definimos la arquitectura técnica, tecnologías a usar, hitos y el plan de implementación.</p>
           </div>
-
           <div class="paso">
             <div class="paso-num">3</div>
             <h3>Desarrollo e Implementación</h3>
             <p>Construimos la solución con metodologías ágiles, pruebas continuas y revisiones contigo.</p>
           </div>
-
           <div class="paso">
             <div class="paso-num">4</div>
             <h3>Operación y Crecimiento</h3>
@@ -924,99 +145,73 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- Proyectos preview -->
     <section>
       <div class="contenedor">
         <div class="section-title">
-          <span class="badge">Preguntas frecuentes</span>
-          <h2>Todo lo que necesitas saber</h2>
+          <span class="badge">Portfolio</span>
+          <h2>Proyectos que generan resultados</h2>
+          <p>Soluciones reales entregadas a empresas que decidieron transformar su operación.</p>
         </div>
-
-        <div class="faq-grid">
-          <div class="faq">
-            <h3>¿Qué es Nexus CSA?</h3>
-            <p>Somos una empresa de Consultoría, Software y Automatización. Conectamos empresas con soluciones inteligentes de software, IA y automatización para transformar su operación y hacerlas crecer.</p>
-          </div>
-
-          <div class="faq">
-            <h3>¿Cuánto tiempo toma implementar una solución?</h3>
-            <p>Depende del alcance. Un diagnóstico toma 1-2 semanas, un MVP entre 3-6 semanas, y soluciones empresariales completas entre 6-16 semanas según los módulos y funcionalidades requeridas.</p>
-          </div>
-
-          <div class="faq">
-            <h3>¿Se puede pagar por fases o hitos?</h3>
-            <p>Sí. Estructuramos los pagos por hitos del proyecto: inicio, avances clave y entrega final. Esto garantiza total alineación entre lo que inviertes y lo que recibes en cada etapa.</p>
-          </div>
-
-          <div class="faq">
-            <h3>¿Ofrecen soporte después de la entrega?</h3>
-            <p>Todos los proyectos incluyen soporte post-entrega inicial. Además, ofrecemos planes mensuales de mantenimiento, monitoreo 24/7 y evolución continua de la solución.</p>
-          </div>
+        <div class="proyectos-grid">
+          <article class="proyecto-card">
+            <div class="proyecto-imagen">📦</div>
+            <div class="proyecto-cuerpo">
+              <span class="estado completado">✓ Completado</span>
+              <p class="proyecto-sector">Distribución y logística</p>
+              <h3>Sistema de Gestión de Inventarios</h3>
+              <p>Plataforma web que redujo errores de inventario en un 80% con control en tiempo real.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Firebase</span>
+              </div>
+            </div>
+          </article>
+          <article class="proyecto-card">
+            <div class="proyecto-imagen">🤖</div>
+            <div class="proyecto-cuerpo">
+              <span class="estado completado">✓ Completado</span>
+              <p class="proyecto-sector">Servicios al cliente</p>
+              <h3>Chatbot IA para Atención al Cliente</h3>
+              <p>Asistente inteligente que atiende el 70% de consultas sin intervención humana, 24/7.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">GPT-4</span>
+                <span class="tech-tag">WhatsApp API</span>
+              </div>
+            </div>
+          </article>
+          <article class="proyecto-card">
+            <div class="proyecto-imagen">⚙️</div>
+            <div class="proyecto-cuerpo">
+              <span class="estado completado">✓ Completado</span>
+              <p class="proyecto-sector">Contabilidad y finanzas</p>
+              <h3>Automatización de Facturación</h3>
+              <p>Flujo automático que eliminó 12 horas semanales de trabajo manual del equipo contable.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">RPA</span>
+                <span class="tech-tag">DIAN API</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div style="text-align:center; margin-top:36px;">
+          <a href="proyectos.html" class="btn btn-secondary">Ver todos los proyectos →</a>
         </div>
       </div>
     </section>
 
-    <!-- CTA Final -->
-    <!-- Formulario de contacto -->
-    <section id="contacto" class="bg-alt">
-      <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">Contáctanos</span>
-          <h2>Cuéntanos sobre tu proyecto</h2>
-          <p>Completa el formulario y te contactamos en menos de 24 horas hábiles.</p>
-        </div>
-
-        <div class="contacto-grid">
-          <form id="form-contacto" class="form-contacto" novalidate>
-            <div class="form-row">
-              <div class="form-grupo">
-                <label for="nombre">Nombre completo *</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-              </div>
-              <div class="form-grupo">
-                <label for="empresa">Empresa</label>
-                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-grupo">
-                <label for="email">Correo electrónico *</label>
-                <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
-              </div>
-              <div class="form-grupo">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000" />
-              </div>
-            </div>
-            <div class="form-grupo">
-              <label for="mensaje">¿Qué necesitas? *</label>
-              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos sobre tu proyecto o necesidad tecnológica..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Enviar mensaje</button>
-            <p id="form-status" class="form-status"></p>
-          </form>
-
-          <div class="contacto-info">
-            <h3>¿Prefieres hablar directamente?</h3>
-            <p>Respuesta inmediata de lunes a viernes, 8am – 6pm (hora Colombia).</p>
-            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA" target="_blank" class="btn btn-primary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Escribir por WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Final -->
+    <!-- CTA -->
     <section>
       <div class="contenedor">
         <div class="cta-final">
           <div>
             <h2>Transforma tu empresa con tecnología inteligente</h2>
-            <p>Solicita una consultoría y descubre cómo el software, la automatización y la IA pueden impulsar tu negocio hacia el siguiente nivel.</p>
+            <p>Solicita una consultoría y descubre cómo el software, la automatización y la IA pueden impulsar tu negocio.</p>
           </div>
-          <a class="btn btn-primary" href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA%20sobre%20software%20e%20inteligencia%20artificial" target="_blank">Hablar con un asesor</a>
+          <a class="btn btn-primary" href="contacto.html">Hablar con un asesor</a>
         </div>
       </div>
     </section>
@@ -1033,21 +228,14 @@
   </footer>
 
   <a class="whatsapp" href="https://wa.me/573113331074?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Nexus%20CSA" target="_blank" aria-label="WhatsApp">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <script type="module" src="firebase-config.js"></script>
-
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
       });
     });
   </script>
