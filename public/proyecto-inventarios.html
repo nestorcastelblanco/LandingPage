@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Gestión de Inventarios — Nexus CSA</title>
+  <meta name="description" content="Plataforma web para control de inventario en tiempo real con alertas automáticas, reportes y gestión de proveedores. Redujo errores en un 80%." />
+  <link rel="icon" href="nexus-csa-logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .proj-hero {
+      padding: 80px 0 70px;
+      background: linear-gradient(135deg, #7c2d12 0%, #c2410c 42%, #ea580c 74%, #fb923c 100%);
+      color: white; position: relative; overflow: hidden;
+    }
+    .proj-hero::before {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); pointer-events: none;
+    }
+    .proj-hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.04); pointer-events: none;
+    }
+    .proj-hero-inner { position: relative; z-index: 1; }
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600;
+      margin-bottom: 22px; transition: color 0.2s;
+    }
+    .proj-back:hover { color: #fff; }
+    .proj-sector-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      color: white; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .proj-hero h1 {
+      font-size: clamp(30px, 5vw, 54px); line-height: 1.08;
+      letter-spacing: -1.2px; margin-bottom: 18px; color: white;
+    }
+    .proj-hero h1 span { color: #fed7aa; }
+    .proj-hero-sub { font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.82); max-width: 640px; margin-bottom: 36px; }
+    .proj-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-white { background: white; color: #c2410c; font-weight: 800; box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.24); }
+    .btn-ghost { background: rgba(255,255,255,0.14); border: 1.5px solid rgba(255,255,255,0.36); color: white; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); }
+    .proj-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+    .proj-stat {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 18px; padding: 18px 26px; backdrop-filter: blur(8px);
+    }
+    .proj-stat strong { display: block; font-size: 26px; font-weight: 800; color: white; line-height: 1.1; }
+    .proj-stat span { font-size: 12px; color: rgba(255,255,255,0.72); }
+
+    .sec { padding: 80px 0; }
+    .sec-alt { background: #fff7ed; }
+    .sec-dark { background: linear-gradient(135deg, #7c2d12, #c2410c); color: white; }
+    .sec-title { text-align: center; margin-bottom: 50px; }
+    .sec-title .label {
+      display: inline-block;
+      background: rgba(234,88,12,0.12); color: #ea580c;
+      font-size: 12px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 6px 14px; border-radius: 999px; margin-bottom: 14px;
+    }
+    .sec-dark .sec-title .label { background: rgba(255,255,255,0.15); color: #fed7aa; }
+    .sec-title h2 { font-size: clamp(26px, 4vw, 40px); color: var(--azul-oscuro); letter-spacing: -0.8px; margin-bottom: 12px; }
+    .sec-dark .sec-title h2 { color: white; }
+    .sec-title p { color: var(--muted); max-width: 620px; margin: auto; }
+    .sec-dark .sec-title p { color: rgba(255,255,255,0.68); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .feat-card {
+      background: white; border-radius: 20px; padding: 28px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 8px 28px rgba(41,73,89,0.06); transition: 0.25s ease;
+    }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(41,73,89,0.12); }
+    .feat-ico {
+      width: 52px; height: 52px; border-radius: 16px;
+      display: grid; place-items: center; margin-bottom: 18px;
+      background: linear-gradient(135deg, #c2410c, #ea580c);
+      box-shadow: 0 8px 20px rgba(194,65,12,0.28);
+    }
+    .feat-ico svg { width: 24px; height: 24px; color: white; }
+    .feat-card h3 { font-size: 16px; color: var(--azul-oscuro); margin-bottom: 8px; font-weight: 700; }
+    .feat-card p { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .step {
+      background: white; border-radius: 20px; padding: 28px 22px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 8px 28px rgba(41,73,89,0.06); text-align: center; position: relative;
+    }
+    .step::after {
+      content: '→'; position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%); font-size: 20px; color: #d1d5db; z-index: 1;
+    }
+    .step:last-child::after { display: none; }
+    .step-num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #c2410c, #ea580c);
+      color: white; border-radius: 15px; display: grid; place-items: center;
+      font-size: 20px; font-weight: 800; margin: 0 auto 16px;
+      box-shadow: 0 8px 20px rgba(194,65,12,0.28);
+    }
+    .step h3 { font-size: 15px; color: var(--azul-oscuro); margin-bottom: 8px; font-weight: 700; }
+    .step p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* Mockup visual */
+    .mockup-section { background: #fff7ed; }
+    .mockup-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .mockup-info h2 { font-size: clamp(26px, 3.5vw, 38px); color: var(--azul-oscuro); letter-spacing: -0.8px; margin-bottom: 16px; }
+    .mockup-info h2 span { color: #c2410c; }
+    .mockup-info p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .check-list { list-style: none; display: grid; gap: 12px; margin-bottom: 28px; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--texto);
+    }
+    .check-list li::before {
+      content: '';
+      width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
+      background: #c2410c;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .dashboard-mock {
+      background: white; border-radius: 20px;
+      border: 1px solid rgba(41,73,89,0.1);
+      box-shadow: 0 30px 70px rgba(41,73,89,0.15);
+      overflow: hidden;
+    }
+    .mock-topbar {
+      background: linear-gradient(135deg, #7c2d12, #c2410c);
+      padding: 14px 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .mock-topbar span { color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 600; }
+    .mock-body { padding: 20px; }
+    .mock-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+    .mock-stat {
+      background: #fff7ed; border-radius: 12px; padding: 14px;
+      border: 1px solid rgba(234,88,12,0.12);
+    }
+    .mock-stat .val { font-size: 22px; font-weight: 800; color: #c2410c; }
+    .mock-stat .lbl { font-size: 11px; color: var(--muted); }
+    .mock-table-hdr {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 8px; padding: 8px 12px;
+      background: #f5f7fb; border-radius: 8px; margin-bottom: 6px;
+      font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase;
+    }
+    .mock-table-row {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 8px; padding: 10px 12px;
+      border-bottom: 1px solid rgba(41,73,89,0.06);
+      font-size: 12px; color: var(--texto); align-items: center;
+    }
+    .mock-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 999px;
+      font-size: 10px; font-weight: 700;
+    }
+    .mock-badge.ok { background: rgba(2,178,103,0.1); color: #02b267; }
+    .mock-badge.low { background: rgba(234,88,12,0.1); color: #ea580c; }
+    .mock-badge.out { background: rgba(239,68,68,0.1); color: #ef4444; }
+
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .benefit-card {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 20px; padding: 28px 22px; text-align: center;
+    }
+    .benefit-card strong { display: block; font-size: 34px; font-weight: 900; color: #fed7aa; margin-bottom: 6px; }
+    .benefit-card span { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+    .faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 960px; margin: auto; }
+    .faq-item {
+      background: white; border-radius: 18px; padding: 24px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 6px 20px rgba(41,73,89,0.05);
+    }
+    .faq-item h3 {
+      font-size: 15px; color: var(--azul-oscuro);
+      margin-bottom: 8px; font-weight: 700;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-item h3::before {
+      content: '?'; width: 22px; height: 22px;
+      background: #c2410c; color: white; border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    }
+    .faq-item p { font-size: 13px; color: var(--muted); margin: 0; padding-left: 32px; }
+
+    .proj-cta {
+      background: linear-gradient(135deg, #7c2d12, #c2410c);
+      border-radius: 34px; padding: 60px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 28px; align-items: center; position: relative; overflow: hidden;
+    }
+    .proj-cta::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); pointer-events: none;
+    }
+    .proj-cta h2 { font-size: clamp(24px, 3vw, 34px); color: white; margin-bottom: 10px; position: relative; }
+    .proj-cta p { color: rgba(255,255,255,0.78); position: relative; }
+    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 960px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .step::after { display: none; }
+      .mockup-wrap { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .proj-cta { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .faq-list { grid-template-columns: 1fr; }
+      .proj-cta { padding: 36px 24px; }
+      .proj-stats { gap: 12px; }
+      .mock-stat-row { grid-template-columns: repeat(2, 1fr); }
+      .mock-table-hdr, .mock-table-row { grid-template-columns: 2fr 1fr 1fr; }
+      .mock-table-hdr > :last-child, .mock-table-row > :last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="contenedor nav">
+      <a href="index.html" class="logo">
+        <img class="logo-svg" src="nexus-csa-logo.svg" alt="Nexus CSA" />
+      </a>
+      <nav class="menu">
+        <a href="servicios.html">Servicios</a>
+        <a href="planes.html">Planes</a>
+        <a href="proyectos.html" class="active">Proyectos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <a class="btn btn-primary" href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA" target="_blank">Hablar con un asesor</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="proj-hero">
+      <div class="contenedor proj-hero-inner">
+        <a href="proyectos.html" class="proj-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+          Volver a proyectos
+        </a>
+        <div class="proj-sector-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/></svg>
+          Distribución y logística · Software a medida
+        </div>
+        <h1>Control total de tu inventario,<br /><span>en tiempo real</span></h1>
+        <p class="proj-hero-sub">Elimina el conteo manual, las pérdidas por vencimiento y los pedidos tardíos. Un sistema que se actualiza solo y te avisa antes de que el stock se agote.</p>
+        <div class="proj-hero-btns">
+          <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20demo%20del%20sistema%20de%20inventarios" target="_blank" class="btn btn-white">Solicitar demo</a>
+          <a href="contacto.html" class="btn btn-ghost">Ver planes</a>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><strong>−80%</strong><span>Errores de inventario</span></div>
+          <div class="proj-stat"><strong>Tiempo real</strong><span>Actualización automática</span></div>
+          <div class="proj-stat"><strong>−15 h/sem</strong><span>Tareas manuales eliminadas</span></div>
+          <div class="proj-stat"><strong>&lt;3 meses</strong><span>Retorno de inversión</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Características -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Funcionalidades</span>
+          <h2>Todo lo que el sistema hace por ti</h2>
+          <p>Una plataforma completa que automatiza desde la entrada de productos hasta los reportes de gestión.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+            </div>
+            <h3>Stock en tiempo real</h3>
+            <p>Cada movimiento —entrada, salida, devolución— actualiza el inventario al instante en todas las sucursales. Sin hojas de cálculo, sin conteos manuales.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+            <h3>Alertas de stock mínimo</h3>
+            <p>Define el punto de reorden por producto. El sistema notifica por correo o WhatsApp antes de que el stock llegue a cero.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Gestión de proveedores</h3>
+            <p>Centraliza contactos, precios y tiempos de entrega. Genera órdenes de compra automáticamente cuando el stock baja del mínimo.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+            </div>
+            <h3>Reportes y analítica avanzada</h3>
+            <p>Rotación de productos, costos de almacenamiento, comparativo de periodos. Exporta en PDF o Excel con un solo clic.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"/><path d="M12 12v6"/></svg>
+            </div>
+            <h3>Múltiples bodegas y sucursales</h3>
+            <p>Gestiona varios puntos de almacenamiento desde un único panel. Traslados entre bodegas con trazabilidad completa.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+            </div>
+            <h3>Integración con POS y ERP</h3>
+            <p>Conecta con tu caja registradora, sistema de ventas o ERP existente. Los inventarios se sincronizan automáticamente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mockup visual -->
+    <section class="sec mockup-section">
+      <div class="contenedor">
+        <div class="mockup-wrap">
+          <div class="mockup-info">
+            <span class="badge" style="background:rgba(234,88,12,0.1);color:#c2410c;">Panel de control</span>
+            <h2>Así se ve tu inventario<br/><span>desde el sistema</span></h2>
+            <p>Un dashboard limpio que muestra exactamente lo que necesitas: stock actual, alertas y movimientos recientes.</p>
+            <ul class="check-list">
+              <li>Vista unificada de todos los productos y bodegas</li>
+              <li>Indicadores visuales de stock crítico y agotado</li>
+              <li>Historial completo de cada movimiento</li>
+              <li>Accesible desde cualquier dispositivo con internet</li>
+            </ul>
+            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20demo%20del%20sistema%20de%20inventarios" target="_blank" class="btn btn-primary" style="background:linear-gradient(135deg,#c2410c,#ea580c);box-shadow:0 12px 25px rgba(194,65,12,0.3);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              Solicitar demo personalizada
+            </a>
+          </div>
+          <div class="dashboard-mock">
+            <div class="mock-topbar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/></svg>
+              <span>Inventario General · Junio 2026</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-stat-row">
+                <div class="mock-stat"><div class="val">1,248</div><div class="lbl">Productos activos</div></div>
+                <div class="mock-stat"><div class="val" style="color:#ea580c;">14</div><div class="lbl">Alertas stock bajo</div></div>
+                <div class="mock-stat"><div class="val">$84.2M</div><div class="lbl">Valor en inventario</div></div>
+              </div>
+              <div class="mock-table-hdr">
+                <span>Producto</span><span>Stock</span><span>Estado</span><span>Última entrada</span>
+              </div>
+              <div class="mock-table-row">
+                <span>Aceite motor 20W50 1L</span>
+                <span>342</span>
+                <span><span class="mock-badge ok">Normal</span></span>
+                <span>Hoy 9:14 am</span>
+              </div>
+              <div class="mock-table-row">
+                <span>Filtro de aire ref. FA-201</span>
+                <span>8</span>
+                <span><span class="mock-badge low">Stock bajo</span></span>
+                <span>Ayer 3:22 pm</span>
+              </div>
+              <div class="mock-table-row">
+                <span>Pastillas de freno traseras</span>
+                <span>0</span>
+                <span><span class="mock-badge out">Agotado</span></span>
+                <span>Jun 5 10:30 am</span>
+              </div>
+              <div class="mock-table-row">
+                <span>Lubricante transmisión 75W90</span>
+                <span>127</span>
+                <span><span class="mock-badge ok">Normal</span></span>
+                <span>Jun 7 8:05 am</span>
+              </div>
+              <div class="mock-table-row">
+                <span>Bujías NGK BP6ES x4</span>
+                <span>23</span>
+                <span><span class="mock-badge low">Stock bajo</span></span>
+                <span>Jun 6 2:50 pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Proceso</span>
+          <h2>¿Cómo funciona en el día a día?</h2>
+          <p>Un flujo simple que elimina el margen de error humano en la gestión de tu inventario.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Registras entradas</h3>
+            <p>Cuando llega mercancía, escaneas o ingresas el producto. El sistema actualiza el stock al instante.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Ventas se sincronizan</h3>
+            <p>Cada venta desde el POS descuenta automáticamente el inventario. Sin doble entrada de datos.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Alerta automática</h3>
+            <p>Cuando el stock baja del mínimo configurado, recibes una notificación inmediata y se genera la orden de compra.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Reportes mensuales</h3>
+            <p>El sistema genera automáticamente el reporte de inventario, rotación y costos. Listo para contabilidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="sec sec-dark">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Resultados</span>
+          <h2>Lo que cambia en tu operación</h2>
+          <p>Resultados documentados en implementaciones reales.</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card"><strong>−80%</strong><span>errores de inventario desde el primer mes</span></div>
+          <div class="benefit-card"><strong>15 h</strong><span>semanales recuperadas de tareas manuales</span></div>
+          <div class="benefit-card"><strong>−35%</strong><span>pérdidas por vencimiento o quiebre de stock</span></div>
+          <div class="benefit-card"><strong>&lt;3 m</strong><span>retorno sobre la inversión</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Preguntas frecuentes</span>
+          <h2>Todo lo que necesitas saber</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>¿Puedo usarlo sin internet en momentos de falla?</h3>
+            <p>Sí. El sistema tiene modo offline que guarda los movimientos localmente y los sincroniza cuando se restaura la conexión.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Cuántos productos y bodegas puedo manejar?</h3>
+            <p>Sin límite. El sistema escala con tu operación, desde 100 referencias hasta decenas de miles en múltiples puntos.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Se integra con mi caja registradora o POS actual?</h3>
+            <p>Nos integramos con la mayoría de sistemas POS del mercado. Si tu sistema tiene API, la conexión es directa.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿El soporte técnico está incluido?</h3>
+            <p>Sí. Todos los planes incluyen soporte por WhatsApp y correo. Los planes avanzados incluyen soporte telefónico prioritario.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="sec" style="padding-top: 0;">
+      <div class="contenedor">
+        <div class="proj-cta">
+          <div>
+            <h2>¿Listo para tener tu inventario bajo control?</h2>
+            <p>Implementación guiada. Migración de datos incluida. Soporte permanente.</p>
+          </div>
+          <div class="cta-btns">
+            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20sistema%20de%20inventarios" target="_blank" class="btn btn-white">Solicitar demo</a>
+            <a href="contacto.html" class="btn btn-ghost">Ver planes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="contenedor footer-inner">
+      <div class="footer-logo">
+        <img src="nexus-csa-logo.svg" alt="Nexus CSA" style="height:52px; width:auto;" />
+      </div>
+      <p>© 2026 Nexus CSA · Consultoría, Software y Automatización</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/573113331074?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Nexus%20CSA" target="_blank" aria-label="WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>

@@ -41,25 +41,7 @@
     <!-- Proyectos -->
     <section>
       <div class="contenedor">
-        <div class="proyectos-grid">
-          
-          <article class="proyecto-card destacado-card">
-            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-graduation-cap"/></svg></div>
-            <div class="proyecto-cuerpo">
-              <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
-              <p class="proyecto-sector">Educación · Instituciones de formación</p>
-              <h3>Asistente IA para Centros Educativos</h3>
-              <p>Chatbot inteligente para centros de formación técnica: responde consultas de admisión, informa sobre programas académicos y orienta a los aspirantes 24/7, automatizando la atención inicial.</p>
-              <div class="tech-tags">
-                <span class="tech-tag">IA Conversacional</span>
-                <span class="tech-tag">n8n</span>
-                <span class="tech-tag">Webhooks</span>
-              </div>
-              <div class="proyecto-acciones">
-                <button type="button" class="btn btn-primary btn-full" data-abrir-chat-edu><svg class="ico"><use href="icons.svg#ic-message"/></svg> Probar demo en vivo</button>
-              </div>
-            </div>
-          </article>
+        <div class="proyectos-grid" style="grid-template-columns: repeat(2, 1fr);">
 
           <article class="proyecto-card destacado-card">
             <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-stethoscope"/></svg></div>
@@ -73,12 +55,32 @@
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">Render</span>
               </div>
-              <div class="proyecto-acciones">
-                <button type="button" class="btn btn-primary btn-full" data-abrir-chat><svg class="ico"><use href="icons.svg#ic-message"/></svg> Probar demo en vivo</button>
+              <div class="proyecto-acciones" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" style="flex:1;" data-abrir-chat><svg class="ico"><use href="icons.svg#ic-message"/></svg> Probar demo</button>
+                <a href="proyecto-chatbot-clinica.html" class="btn btn-secondary" style="flex:1; justify-content:center;"><svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg> Ver proyecto</a>
               </div>
             </div>
           </article>
-          
+
+          <article class="proyecto-card destacado-card">
+            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-graduation-cap"/></svg></div>
+            <div class="proyecto-cuerpo">
+              <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
+              <p class="proyecto-sector">Educación · Instituciones de formación</p>
+              <h3>Asistente IA para Centros Educativos</h3>
+              <p>Chatbot inteligente para centros de formación técnica: responde consultas de admisión, informa sobre programas académicos y orienta a los aspirantes 24/7, automatizando la atención inicial.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">IA Conversacional</span>
+                <span class="tech-tag">n8n</span>
+                <span class="tech-tag">Webhooks</span>
+              </div>
+              <div class="proyecto-acciones" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" style="flex:1;" data-abrir-chat-edu><svg class="ico"><use href="icons.svg#ic-message"/></svg> Probar demo</button>
+                <a href="proyecto-chatbot-educativo.html" class="btn btn-secondary" style="flex:1; justify-content:center;"><svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg> Ver proyecto</a>
+              </div>
+            </div>
+          </article>
+
           <article class="proyecto-card">
             <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-package"/></svg></div>
             <div class="proyecto-cuerpo">
@@ -91,6 +93,9 @@
                 <span class="tech-tag">Node.js</span>
                 <span class="tech-tag">PostgreSQL</span>
                 <span class="tech-tag">Firebase</span>
+              </div>
+              <div class="proyecto-acciones">
+                <a href="proyecto-inventarios.html" class="btn btn-secondary btn-full"><svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg> Ver proyecto completo</a>
               </div>
             </div>
           </article>
@@ -108,10 +113,12 @@
                 <span class="tech-tag">Looker Studio</span>
                 <span class="tech-tag">REST API</span>
               </div>
+              <div class="proyecto-acciones">
+                <a href="proyecto-analytics.html" class="btn btn-secondary btn-full"><svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg> Ver proyecto completo</a>
+              </div>
             </div>
           </article>
 
-          
         </div>
       </div>
     </section>

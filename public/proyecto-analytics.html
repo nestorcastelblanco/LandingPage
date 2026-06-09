@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Analítica de Ventas — Nexus CSA</title>
+  <meta name="description" content="Panel de control con métricas en tiempo real de ventas, productos más rentables, tendencias y predicciones con IA. Integrado con sistemas POS." />
+  <link rel="icon" href="nexus-csa-logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .proj-hero {
+      padding: 80px 0 70px;
+      background: linear-gradient(135deg, #2e1065 0%, #5b21b6 42%, #7c3aed 74%, #a78bfa 100%);
+      color: white; position: relative; overflow: hidden;
+    }
+    .proj-hero::before {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); pointer-events: none;
+    }
+    .proj-hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.04); pointer-events: none;
+    }
+    .proj-hero-inner { position: relative; z-index: 1; }
+    .proj-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600;
+      margin-bottom: 22px; transition: color 0.2s;
+    }
+    .proj-back:hover { color: #fff; }
+    .proj-sector-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      color: white; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .proj-hero h1 {
+      font-size: clamp(30px, 5vw, 54px); line-height: 1.08;
+      letter-spacing: -1.2px; margin-bottom: 18px; color: white;
+    }
+    .proj-hero h1 span { color: #ddd6fe; }
+    .proj-hero-sub { font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.82); max-width: 640px; margin-bottom: 36px; }
+    .proj-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-white { background: white; color: #5b21b6; font-weight: 800; box-shadow: 0 12px 28px rgba(0,0,0,0.18); }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.24); }
+    .btn-ghost { background: rgba(255,255,255,0.14); border: 1.5px solid rgba(255,255,255,0.36); color: white; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); }
+    .proj-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+    .proj-stat {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 18px; padding: 18px 26px; backdrop-filter: blur(8px);
+    }
+    .proj-stat strong { display: block; font-size: 26px; font-weight: 800; color: white; line-height: 1.1; }
+    .proj-stat span { font-size: 12px; color: rgba(255,255,255,0.72); }
+
+    .sec { padding: 80px 0; }
+    .sec-alt { background: #f5f3ff; }
+    .sec-dark { background: linear-gradient(135deg, #2e1065, #5b21b6); color: white; }
+    .sec-title { text-align: center; margin-bottom: 50px; }
+    .sec-title .label {
+      display: inline-block;
+      background: rgba(124,58,237,0.12); color: #7c3aed;
+      font-size: 12px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 6px 14px; border-radius: 999px; margin-bottom: 14px;
+    }
+    .sec-dark .sec-title .label { background: rgba(255,255,255,0.15); color: #ddd6fe; }
+    .sec-title h2 { font-size: clamp(26px, 4vw, 40px); color: var(--azul-oscuro); letter-spacing: -0.8px; margin-bottom: 12px; }
+    .sec-dark .sec-title h2 { color: white; }
+    .sec-title p { color: var(--muted); max-width: 620px; margin: auto; }
+    .sec-dark .sec-title p { color: rgba(255,255,255,0.68); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .feat-card {
+      background: white; border-radius: 20px; padding: 28px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 8px 28px rgba(41,73,89,0.06); transition: 0.25s ease;
+    }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(41,73,89,0.12); }
+    .feat-ico {
+      width: 52px; height: 52px; border-radius: 16px;
+      display: grid; place-items: center; margin-bottom: 18px;
+      background: linear-gradient(135deg, #5b21b6, #7c3aed);
+      box-shadow: 0 8px 20px rgba(91,33,182,0.28);
+    }
+    .feat-ico svg { width: 24px; height: 24px; color: white; }
+    .feat-card h3 { font-size: 16px; color: var(--azul-oscuro); margin-bottom: 8px; font-weight: 700; }
+    .feat-card p { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* Dashboard mockup */
+    .dashboard-section { background: #f5f3ff; }
+    .dashboard-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .dashboard-info h2 { font-size: clamp(26px, 3.5vw, 38px); color: var(--azul-oscuro); letter-spacing: -0.8px; margin-bottom: 16px; }
+    .dashboard-info h2 span { color: #7c3aed; }
+    .dashboard-info p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .check-list { list-style: none; display: grid; gap: 12px; margin-bottom: 28px; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--texto);
+    }
+    .check-list li::before {
+      content: '';
+      width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
+      background: #7c3aed;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* Dashboard visual mockup */
+    .dash-mock {
+      background: white; border-radius: 20px;
+      border: 1px solid rgba(41,73,89,0.1);
+      box-shadow: 0 30px 70px rgba(41,73,89,0.15);
+      overflow: hidden;
+    }
+    .dash-topbar {
+      background: linear-gradient(135deg, #2e1065, #5b21b6);
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-topbar span { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; }
+    .dash-topbar small { color: rgba(255,255,255,0.5); font-size: 11px; }
+    .dash-body { padding: 18px; }
+    .dash-kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .dash-kpi {
+      background: #f5f3ff; border-radius: 12px; padding: 14px;
+      border: 1px solid rgba(124,58,237,0.1);
+    }
+    .dash-kpi .kval { font-size: 20px; font-weight: 800; color: #5b21b6; }
+    .dash-kpi .klbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+    .dash-kpi .kchg { font-size: 11px; font-weight: 700; }
+    .kchg.up { color: #02b267; }
+    .kchg.down { color: #ef4444; }
+
+    /* Mini bar chart */
+    .dash-chart-area { background: #fafafa; border-radius: 12px; padding: 14px; margin-bottom: 14px; border: 1px solid rgba(41,73,89,0.07); }
+    .dash-chart-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+    .bars { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
+    .bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+    .bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, #5b21b6, #a78bfa); min-height: 4px; }
+    .bar-lbl { font-size: 10px; color: var(--muted); }
+
+    /* Top products */
+    .dash-products { }
+    .dash-products-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+    .dash-product-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(41,73,89,0.06);
+      font-size: 12px;
+    }
+    .dash-product-row:last-child { border-bottom: none; }
+    .dp-rank { width: 20px; height: 20px; background: linear-gradient(135deg, #5b21b6, #7c3aed); border-radius: 6px; display: grid; place-items: center; color: white; font-size: 10px; font-weight: 800; flex-shrink: 0; }
+    .dp-name { flex: 1; color: var(--texto); }
+    .dp-val { font-weight: 700; color: #5b21b6; }
+    .dp-bar { width: 60px; height: 6px; background: #e9d5ff; border-radius: 3px; overflow: hidden; }
+    .dp-bar-fill { height: 100%; background: linear-gradient(90deg, #5b21b6, #a78bfa); border-radius: 3px; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .step {
+      background: white; border-radius: 20px; padding: 28px 22px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 8px 28px rgba(41,73,89,0.06); text-align: center; position: relative;
+    }
+    .step::after {
+      content: '→'; position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%); font-size: 20px; color: #d1d5db; z-index: 1;
+    }
+    .step:last-child::after { display: none; }
+    .step-num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #5b21b6, #7c3aed);
+      color: white; border-radius: 15px; display: grid; place-items: center;
+      font-size: 20px; font-weight: 800; margin: 0 auto 16px;
+      box-shadow: 0 8px 20px rgba(91,33,182,0.28);
+    }
+    .step h3 { font-size: 15px; color: var(--azul-oscuro); margin-bottom: 8px; font-weight: 700; }
+    .step p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .benefit-card {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 20px; padding: 28px 22px; text-align: center;
+    }
+    .benefit-card strong { display: block; font-size: 34px; font-weight: 900; color: #ddd6fe; margin-bottom: 6px; }
+    .benefit-card span { font-size: 13px; color: rgba(255,255,255,0.72); }
+
+    .faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 960px; margin: auto; }
+    .faq-item {
+      background: white; border-radius: 18px; padding: 24px;
+      border: 1px solid rgba(41,73,89,0.08);
+      box-shadow: 0 6px 20px rgba(41,73,89,0.05);
+    }
+    .faq-item h3 {
+      font-size: 15px; color: var(--azul-oscuro);
+      margin-bottom: 8px; font-weight: 700;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-item h3::before {
+      content: '?'; width: 22px; height: 22px;
+      background: #7c3aed; color: white; border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    }
+    .faq-item p { font-size: 13px; color: var(--muted); margin: 0; padding-left: 32px; }
+
+    .proj-cta {
+      background: linear-gradient(135deg, #2e1065, #5b21b6);
+      border-radius: 34px; padding: 60px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 28px; align-items: center; position: relative; overflow: hidden;
+    }
+    .proj-cta::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); pointer-events: none;
+    }
+    .proj-cta h2 { font-size: clamp(24px, 3vw, 34px); color: white; margin-bottom: 10px; position: relative; }
+    .proj-cta p { color: rgba(255,255,255,0.78); position: relative; }
+    .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 960px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .step::after { display: none; }
+      .dashboard-wrap { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .proj-cta { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .faq-list { grid-template-columns: 1fr; }
+      .proj-cta { padding: 36px 24px; }
+      .proj-stats { gap: 12px; }
+      .dash-kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="contenedor nav">
+      <a href="index.html" class="logo">
+        <img class="logo-svg" src="nexus-csa-logo.svg" alt="Nexus CSA" />
+      </a>
+      <nav class="menu">
+        <a href="servicios.html">Servicios</a>
+        <a href="planes.html">Planes</a>
+        <a href="proyectos.html" class="active">Proyectos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <a class="btn btn-primary" href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA" target="_blank">Hablar con un asesor</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="proj-hero">
+      <div class="contenedor proj-hero-inner">
+        <a href="proyectos.html" class="proj-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+          Volver a proyectos
+        </a>
+        <div class="proj-sector-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          Retail y comercio · Analítica de datos
+        </div>
+        <h1>Toma decisiones de negocio<br /><span>con datos reales, no intuición</span></h1>
+        <p class="proj-hero-sub">Métricas de ventas, predicciones con IA y tendencias en tiempo real desde cualquier dispositivo. Integrado directamente con tu sistema POS.</p>
+        <div class="proj-hero-btns">
+          <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20demo%20del%20dashboard%20de%20ventas" target="_blank" class="btn btn-white">Solicitar demo</a>
+          <a href="contacto.html" class="btn btn-ghost">Ver planes</a>
+        </div>
+        <div class="proj-stats">
+          <div class="proj-stat"><strong>Tiempo real</strong><span>Actualización continua</span></div>
+          <div class="proj-stat"><strong>IA</strong><span>Predicciones de ventas</span></div>
+          <div class="proj-stat"><strong>+30</strong><span>Sistemas POS compatibles</span></div>
+          <div class="proj-stat"><strong>100%</strong><span>Web y móvil</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Características -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Funcionalidades</span>
+          <h2>Inteligencia de negocio al alcance de tu equipo</h2>
+          <p>Un dashboard diseñado para que cualquier persona de tu empresa entienda el negocio sin ser experto en datos.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+            </div>
+            <h3>Métricas en tiempo real</h3>
+            <p>Ventas del día, semana y mes actualizadas al instante. Compara con periodos anteriores y detecta desvíos al momento.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+            </div>
+            <h3>Predicciones con IA</h3>
+            <p>El modelo anticipa la demanda de las próximas semanas basado en patrones históricos, estacionalidad y tendencias.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3>Productos más rentables</h3>
+            <p>Identifica qué SKUs generan más margen, cuáles tienen baja rotación y dónde concentrar los esfuerzos de venta.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+            </div>
+            <h3>Integración directa con POS</h3>
+            <p>Compatible con más de 30 sistemas POS del mercado. Los datos fluyen automáticamente sin entrada manual.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h3>Reportes automáticos por correo</h3>
+            <p>Recibe el reporte semanal o mensual directamente en tu correo. Compártelo con socios o contabilidad en un clic.</p>
+          </div>
+          <div class="feat-card">
+            <div class="feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Acceso desde cualquier dispositivo</h3>
+            <p>Dashboard 100% web, optimizado para móvil. Consulta tus métricas desde el computador, tablet o celular.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard visual -->
+    <section class="sec dashboard-section">
+      <div class="contenedor">
+        <div class="dashboard-wrap">
+          <div class="dashboard-info">
+            <span class="badge" style="background:rgba(124,58,237,0.1);color:#7c3aed;">Panel interactivo</span>
+            <h2>Así se ve tu negocio<br/><span>en el dashboard</span></h2>
+            <p>Un panel limpio y poderoso que convierte los datos de tu punto de venta en decisiones accionables.</p>
+            <ul class="check-list">
+              <li>KPIs de ventas en tiempo real con comparativo</li>
+              <li>Gráficas de tendencias por período y producto</li>
+              <li>Ranking de productos por rentabilidad y rotación</li>
+              <li>Alertas automáticas cuando una métrica cae</li>
+            </ul>
+            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20demo%20del%20dashboard%20de%20ventas" target="_blank" class="btn btn-primary" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);box-shadow:0 12px 25px rgba(91,33,182,0.3);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              Solicitar demo personalizada
+            </a>
+          </div>
+          <div class="dash-mock">
+            <div class="dash-topbar">
+              <span>Dashboard de Ventas</span>
+              <small>Junio 2026 · En vivo</small>
+            </div>
+            <div class="dash-body">
+              <div class="dash-kpi-row">
+                <div class="dash-kpi">
+                  <div class="kval">$18.4M</div>
+                  <div class="klbl">Ventas del mes</div>
+                  <div class="kchg up">↑ 12.4% vs mayo</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="kval">834</div>
+                  <div class="klbl">Transacciones</div>
+                  <div class="kchg up">↑ 8.1%</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="kval">$22.1k</div>
+                  <div class="klbl">Ticket promedio</div>
+                  <div class="kchg down">↓ 2.3%</div>
+                </div>
+              </div>
+              <div class="dash-chart-area">
+                <div class="dash-chart-title">Ventas diarias · Última semana</div>
+                <div class="bars">
+                  <div class="bar-wrap"><div class="bar" style="height:45%"></div><span class="bar-lbl">L</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:62%"></div><span class="bar-lbl">M</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:55%"></div><span class="bar-lbl">X</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:78%"></div><span class="bar-lbl">J</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:95%"></div><span class="bar-lbl">V</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:100%"></div><span class="bar-lbl">S</span></div>
+                  <div class="bar-wrap"><div class="bar" style="height:42%"></div><span class="bar-lbl">D</span></div>
+                </div>
+              </div>
+              <div class="dash-products">
+                <div class="dash-products-title">Top productos por rentabilidad</div>
+                <div class="dash-product-row">
+                  <div class="dp-rank">1</div>
+                  <div class="dp-name">Aceite 20W50 1L</div>
+                  <div class="dp-val">$3.2M</div>
+                  <div class="dp-bar"><div class="dp-bar-fill" style="width:95%"></div></div>
+                </div>
+                <div class="dash-product-row">
+                  <div class="dp-rank">2</div>
+                  <div class="dp-name">Kit filtros completo</div>
+                  <div class="dp-val">$2.8M</div>
+                  <div class="dp-bar"><div class="dp-bar-fill" style="width:82%"></div></div>
+                </div>
+                <div class="dash-product-row">
+                  <div class="dp-rank">3</div>
+                  <div class="dp-name">Pastillas de freno</div>
+                  <div class="dp-val">$1.9M</div>
+                  <div class="dp-bar"><div class="dp-bar-fill" style="width:58%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Proceso</span>
+          <h2>De los datos a las decisiones en 4 pasos</h2>
+          <p>Conectamos tu operación existente y transformamos los datos en inteligencia de negocio accionable.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Conectamos tu POS</h3>
+            <p>Integramos el dashboard con tu sistema de ventas actual. Sin interrumpir la operación ni cambiar tu flujo.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Datos en tiempo real</h3>
+            <p>Cada venta se refleja automáticamente en el dashboard. Sin exportar archivos ni copiar datos manualmente.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>IA analiza tendencias</h3>
+            <p>El modelo detecta patrones, estacionalidad y anomalías. Te alerta sobre caídas y oportunidades de negocio.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Tú decides con datos</h3>
+            <p>Qué comprar, cuándo hacer descuentos, qué producto impulsar. Decisiones basadas en evidencia, no en suposiciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="sec sec-dark">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Resultados</span>
+          <h2>El impacto en tu negocio</h2>
+          <p>Resultados documentados en comercios que adoptaron analítica de datos.</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card"><strong>+18%</strong><span>ingresos al identificar los mejores productos</span></div>
+          <div class="benefit-card"><strong>−28%</strong><span>stock muerto con predicción de demanda</span></div>
+          <div class="benefit-card"><strong>4 h</strong><span>semanales recuperadas de reportes manuales</span></div>
+          <div class="benefit-card"><strong>100%</strong><span>visibilidad del negocio desde el móvil</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec">
+      <div class="contenedor">
+        <div class="sec-title">
+          <span class="label">Preguntas frecuentes</span>
+          <h2>Todo lo que necesitas saber</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>¿Funciona con mi sistema de ventas actual?</h3>
+            <p>Nos integramos con más de 30 sistemas POS. Si tu sistema tiene API o exporta archivos estándar (CSV, Excel), la conexión es directa.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Necesito conocimientos técnicos para usarlo?</h3>
+            <p>No. La interfaz está diseñada para ser intuitiva. Si sabes leer una gráfica básica, puedes usar el dashboard desde el primer día.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Los datos de mi negocio son seguros?</h3>
+            <p>Toda la información viaja y se almacena con encriptación de extremo a extremo. Tus datos son solo tuyos.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Puedo agregar más usuarios?</h3>
+            <p>Sí. El dashboard soporta múltiples usuarios con perfiles de acceso diferenciados. El dueño ve todo; el vendedor solo sus métricas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="sec" style="padding-top: 0;">
+      <div class="contenedor">
+        <div class="proj-cta">
+          <div>
+            <h2>¿Listo para gestionar tu negocio con datos reales?</h2>
+            <p>Configuración en menos de una semana. Sin cambiar tu sistema actual. Resultados desde el primer mes.</p>
+          </div>
+          <div class="cta-btns">
+            <a href="https://wa.me/573113331074?text=Hola,%20quiero%20el%20dashboard%20de%20analítica%20de%20ventas" target="_blank" class="btn btn-white">Solicitar demo</a>
+            <a href="contacto.html" class="btn btn-ghost">Ver planes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="contenedor footer-inner">
+      <div class="footer-logo">
+        <img src="nexus-csa-logo.svg" alt="Nexus CSA" style="height:52px; width:auto;" />
+      </div>
+      <p>© 2026 Nexus CSA · Consultoría, Software y Automatización</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/573113331074?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Nexus%20CSA" target="_blank" aria-label="WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>
