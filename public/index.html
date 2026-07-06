@@ -3,164 +3,1244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus CSA | Software, Automatización e IA para Empresas</title>
-  <meta name="description" content="Nexus CSA: Consultoría, Software y Automatización. Conectamos empresas con soluciones inteligentes de software, IA y automatización para transformar negocios." />
-  <meta property="og:title" content="Nexus CSA | Software, Automatización e IA para Empresas" />
-  <meta property="og:description" content="Conectamos empresas con soluciones inteligentes de software, IA y automatización." />
+  <title>NEXUS CSA | Conectamos personas, datos y sistemas para transformar tu operación</title>
+  <meta name="description" content="NEXUS CSA: Plataforma tecnológica empresarial. Automatización de procesos, integración de sistemas, IA conversacional y analítica para empresas en crecimiento." />
+  <meta property="og:title" content="NEXUS CSA | Soluciones que conectan, tecnologías que transforman" />
+  <meta property="og:description" content="Conectamos personas, datos y sistemas para optimizar procesos e impulsar decisiones inteligentes." />
   <meta property="og:image" content="nexus.png" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="nexus-csa-logo.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── Hero dark ── */
+    .hero-index {
+      background-color: #000618;
+      background-image:
+        linear-gradient(rgba(91,238,252,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,238,252,0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      position: relative;
+      overflow: hidden;
+      padding: 108px 0 88px;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-index::before {
+      content: '';
+      position: absolute;
+      top: -220px; right: -160px;
+      width: 780px; height: 780px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,41,244,0.28) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-index::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -80px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,238,252,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-index > .contenedor { position: relative; z-index: 1; }
+    .hero-index h1 { color: white; font-size: clamp(36px, 4.8vw, 62px); line-height: 1.06; letter-spacing: -2px; margin-bottom: 24px; max-width: 620px; }
+    .hero-index h1 .accent { color: #5BEEFC; }
+    .hero-index .hero-sub { color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.65; margin-bottom: 36px; max-width: 520px; }
+    .hero-index .badge { background: rgba(91,238,252,0.1); color: #5BEEFC; border-color: rgba(91,238,252,0.28); }
+    .hero-index .stat { background: rgba(255,255,255,0.05); border-color: rgba(91,238,252,0.18); }
+    .hero-index .stat strong { color: #5BEEFC; }
+    .hero-index .stat span { color: rgba(255,255,255,0.58); }
+
+    /* ── Dashboard visual ── */
+    .hero-dashboard {
+      background: linear-gradient(160deg, rgba(10,18,60,0.96), rgba(0,6,24,0.98));
+      border: 1px solid rgba(91,238,252,0.22);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(16,41,244,0.28), inset 0 1px 0 rgba(91,238,252,0.1);
+      animation: dashFloat 7s ease-in-out infinite;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    @keyframes dashFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .db-chrome {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(91,238,252,0.1);
+    }
+    .db-dots { display: flex; gap: 6px; }
+    .db-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .db-dots span:nth-child(1) { background: #ff5f57; }
+    .db-dots span:nth-child(2) { background: #febc2e; }
+    .db-dots span:nth-child(3) { background: #28c840; }
+    .db-chrome-title { flex: 1; text-align: center; color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; letter-spacing: 0.05em; }
+    .db-live { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #5BEEFC; font-weight: 600; }
+    .db-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #5BEEFC; display: block; animation: livePulse 2s ease-in-out infinite; }
+    @keyframes livePulse { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+
+    .db-metrics {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px;
+      background: rgba(91,238,252,0.06);
+      border-bottom: 1px solid rgba(91,238,252,0.1);
+    }
+    .db-metric {
+      background: rgba(0,6,24,0.8);
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .db-metric b { display: block; font-size: 20px; font-weight: 700; color: white; line-height: 1; margin-bottom: 4px; }
+    .db-metric b.cyan { color: #5BEEFC; }
+    .db-metric small { font-size: 10px; color: rgba(255,255,255,0.42); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .db-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .db-chart {
+      padding: 16px;
+      border-right: 1px solid rgba(91,238,252,0.08);
+    }
+    .db-chart-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; font-weight: 600; }
+    .db-bars-wrap { display: flex; align-items: flex-end; gap: 6px; height: 68px; }
+    .db-bar {
+      flex: 1;
+      background: linear-gradient(to top, #1029F4, #5BEEFC);
+      border-radius: 4px 4px 0 0;
+      height: var(--h);
+      transform-origin: bottom;
+      animation: barUp 1s cubic-bezier(0.22,1,0.36,1) both;
+      opacity: 0.85;
+    }
+    .db-bar.hi { opacity: 1; box-shadow: 0 0 12px rgba(91,238,252,0.5); }
+    .db-bar:nth-child(1) { animation-delay: 0.1s; }
+    .db-bar:nth-child(2) { animation-delay: 0.2s; }
+    .db-bar:nth-child(3) { animation-delay: 0.3s; }
+    .db-bar:nth-child(4) { animation-delay: 0.4s; }
+    .db-bar:nth-child(5) { animation-delay: 0.5s; }
+    .db-bar:nth-child(6) { animation-delay: 0.6s; }
+    @keyframes barUp {
+      from { transform: scaleY(0); opacity: 0; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+    .db-bar-months { display: flex; gap: 6px; margin-top: 6px; }
+    .db-bar-months span { flex: 1; text-align: center; font-size: 9px; color: rgba(255,255,255,0.3); }
+
+    .db-integrations { padding: 16px; }
+    .db-int-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; font-weight: 600; }
+    .db-int {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .db-int:last-child { border-bottom: none; }
+    .db-int-name { font-size: 11px; color: rgba(255,255,255,0.72); }
+    .db-pill {
+      font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 999px;
+      background: rgba(91,238,252,0.12);
+      color: #5BEEFC;
+      border: 1px solid rgba(91,238,252,0.2);
+    }
+
+    .db-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 18px;
+      background: rgba(16,41,244,0.08);
+      border-top: 1px solid rgba(91,238,252,0.08);
+    }
+    .db-footer span { font-size: 10px; color: rgba(255,255,255,0.38); }
+    .db-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #5BEEFC;
+      animation: livePulse 1.5s ease-in-out infinite;
+    }
+
+    /* ── Pilares section ── */
+    .pilares-section {
+      background: #000618;
+      background-image:
+        linear-gradient(rgba(91,238,252,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,238,252,0.02) 1px, transparent 1px);
+      background-size: 72px 72px;
+      padding: 88px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .pilares-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 800px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(16,41,244,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pilares-section .section-title { position: relative; z-index: 1; }
+    .pilares-section .section-title h2 { color: white; }
+    .pilares-section .section-title p { color: rgba(255,255,255,0.6); }
+    .pilares-section .badge { background: rgba(91,238,252,0.1); color: #5BEEFC; border-color: rgba(91,238,252,0.28); }
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+      position: relative; z-index: 1;
+    }
+    .pilar-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(91,238,252,0.15);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: 0.28s ease;
+      backdrop-filter: blur(12px);
+    }
+    .pilar-card:hover {
+      background: rgba(91,238,252,0.06);
+      border-color: rgba(91,238,252,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(91,238,252,0.08);
+    }
+    .pilar-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--grad);
+      display: grid; place-items: center;
+      margin-bottom: 18px;
+    }
+    .pilar-icon svg { width: 24px; height: 24px; stroke: white; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .pilar-card h3 { color: white; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .pilar-card p { color: rgba(255,255,255,0.58); font-size: 14px; line-height: 1.55; }
+    .pilar-card .pilar-tag { display: inline-block; font-size: 11px; font-weight: 700; color: #5BEEFC; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+
+    /* ── Sectores ── */
+    .sectores-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .sector-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 20px 22px;
+      border: 1px solid rgba(16,41,244,0.1);
+      box-shadow: 0 4px 16px rgba(16,41,244,0.06);
+      transition: 0.25s ease;
+      font-weight: 600;
+      color: #111827;
+      font-size: 15px;
+    }
+    .sector-item:hover {
+      border-color: rgba(16,41,244,0.28);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(16,41,244,0.1);
+      color: #1029F4;
+    }
+    .sector-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(16,41,244,0.08);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      transition: 0.25s ease;
+    }
+    .sector-item:hover .sector-icon { background: var(--grad); }
+    .sector-icon .ico { width: 22px; height: 22px; color: #1029F4; }
+    .sector-item:hover .sector-icon .ico { color: white; }
+
+    /* ── Beneficios ── */
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+    }
+    .beneficio {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--blanco);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(16,41,244,0.08);
+      box-shadow: 0 6px 20px rgba(16,41,244,0.05);
+    }
+    .beneficio-num {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--grad);
+      display: grid; place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .beneficio h4 { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+    .beneficio p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+    /* ── Scroll reveal ── */
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-anim].visible { opacity: 1; transform: none; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: inherit; text-decoration: none;
+      font-weight: 500; cursor: pointer;
+    }
+    .nav-dropdown-toggle .chev {
+      width: 13px; height: 13px; stroke: currentColor; stroke-width: 2.5;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.2s ease;
+    }
+    .nav-dropdown:hover .chev,
+    .nav-dropdown.open .chev { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 16px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(0,6,24,0.97);
+      border: 1px solid rgba(91,238,252,0.18);
+      border-radius: 16px; padding: 8px; min-width: 260px;
+      backdrop-filter: blur(24px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      pointer-events: none; z-index: 200;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 40px rgba(16,41,244,0.16);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: all;
+    }
+    .nav-dd-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 10px;
+      text-decoration: none; color: rgba(255,255,255,0.82);
+      transition: 0.18s ease;
+    }
+    .nav-dd-item:hover { background: rgba(91,238,252,0.08); color: #5BEEFC; }
+    .nav-dd-ico {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(16,41,244,0.25); border: 1px solid rgba(91,238,252,0.18);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .nav-dd-ico svg { width: 20px; height: 20px; stroke: #5BEEFC; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-dd-lbl strong { display: block; font-size: 14px; font-weight: 700; }
+    .nav-dd-lbl small { font-size: 11px; color: rgba(255,255,255,0.42); }
+
+    /* ── SaludCSA HIS ── */
+    .his-section {
+      background: #000618;
+      background-image:
+        linear-gradient(rgba(91,238,252,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,238,252,0.018) 1px, transparent 1px);
+      background-size: 72px 72px;
+      padding: 100px 0 112px;
+      position: relative; overflow: hidden;
+    }
+    .his-section::before {
+      content: ''; position: absolute;
+      top: 22%; left: 50%; transform: translate(-50%,-50%);
+      width: 1000px; height: 600px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(16,41,244,0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .his-section::after {
+      content: ''; position: absolute;
+      bottom: -80px; right: -80px;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,238,252,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .his-section .section-title { position: relative; z-index: 1; }
+    .his-section .section-title h2 { color: white; font-size: clamp(40px,5.5vw,68px); letter-spacing: -2.5px; }
+    .his-section .section-title p { color: rgba(255,255,255,0.6); }
+    .his-badge { background: rgba(91,238,252,0.1); color: #5BEEFC; border-color: rgba(91,238,252,0.28); }
+    .his-cyan { color: #5BEEFC; }
+    .his-kpis {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin: 36px 0 60px; position: relative; z-index: 1;
+    }
+    .his-kpi {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(91,238,252,0.07); border: 1px solid rgba(91,238,252,0.2);
+      border-radius: 999px; padding: 9px 20px;
+      color: #5BEEFC; font-size: 13.5px; font-weight: 600;
+      white-space: nowrap; transition: 0.24s ease;
+    }
+    .his-kpi::before {
+      content: '✓'; width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(91,238,252,0.18); font-size: 10px; font-weight: 900;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .his-kpi:hover { background: rgba(91,238,252,0.13); border-color: rgba(91,238,252,0.4); transform: translateY(-2px); }
+
+    /* Mockup */
+    .his-mockup-wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto 80px; }
+    .his-mockup {
+      background: linear-gradient(160deg, rgba(8,14,50,0.98), rgba(0,6,24,0.99));
+      border: 1px solid rgba(91,238,252,0.22); border-radius: 22px; overflow: hidden;
+      box-shadow: 0 0 140px rgba(16,41,244,0.3), 0 0 50px rgba(91,238,252,0.06), inset 0 1px 0 rgba(91,238,252,0.08);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .his-app-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 20px; background: rgba(16,41,244,0.14);
+      border-bottom: 1px solid rgba(91,238,252,0.1);
+    }
+    .his-app-dots { display: flex; gap: 6px; }
+    .his-app-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .his-app-dots span:nth-child(1){ background:#ff5f57; }
+    .his-app-dots span:nth-child(2){ background:#febc2e; }
+    .his-app-dots span:nth-child(3){ background:#28c840; }
+    .his-app-name { flex:1; text-align:center; font-size:12px; font-weight:600; color:rgba(255,255,255,0.45); letter-spacing:0.05em; }
+    .his-app-live { display:flex; align-items:center; gap:5px; font-size:11px; color:#5BEEFC; font-weight:700; }
+    .his-app-live::before { content:''; width:6px; height:6px; border-radius:50%; background:#5BEEFC; display:block; animation:livePulse 2s ease-in-out infinite; }
+    .his-layout { display:grid; grid-template-columns:185px 1fr; }
+    .his-nav-sidebar {
+      background: rgba(0,3,18,0.7);
+      border-right: 1px solid rgba(91,238,252,0.07);
+      padding: 14px 0;
+    }
+    .his-nav-sec { padding:6px 12px 3px; font-size:9.5px; font-weight:700; color:rgba(255,255,255,0.26); text-transform:uppercase; letter-spacing:0.08em; }
+    .his-nav-item {
+      display:flex; align-items:center; gap:9px;
+      padding:9px 14px; font-size:12px; color:rgba(255,255,255,0.42);
+      transition:0.18s ease;
+    }
+    .his-nav-item.active { background:rgba(16,41,244,0.22); color:#5BEEFC; border-left:2px solid #5BEEFC; padding-left:12px; }
+    .his-nav-dot { width:7px; height:7px; border-radius:50%; background:currentColor; opacity:0.6; flex-shrink:0; }
+    .his-nav-item.active .his-nav-dot { opacity:1; }
+    .his-main-area { padding:18px 20px; }
+    .his-main-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .his-main-top h4 { font-size:14px; font-weight:700; color:white; margin:0; }
+    .his-main-top span { font-size:11px; color:rgba(255,255,255,0.32); }
+    .his-stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:14px; }
+    .his-stat-box {
+      background:rgba(16,41,244,0.1); border:1px solid rgba(91,238,252,0.1);
+      border-radius:10px; padding:12px; text-align:center;
+    }
+    .his-stat-val { font-size:20px; font-weight:800; color:#5BEEFC; display:block; line-height:1; }
+    .his-stat-lbl { font-size:9.5px; color:rgba(255,255,255,0.34); text-transform:uppercase; letter-spacing:0.04em; margin-top:4px; }
+    .his-table { background:rgba(255,255,255,0.02); border:1px solid rgba(91,238,252,0.07); border-radius:10px; overflow:hidden; }
+    .his-table-head {
+      display:grid; grid-template-columns:70px 1fr 110px 80px;
+      padding:8px 14px; gap:10px;
+      background:rgba(16,41,244,0.1);
+      font-size:10px; color:rgba(255,255,255,0.36);
+      text-transform:uppercase; letter-spacing:0.05em; font-weight:600;
+    }
+    .his-table-row {
+      display:grid; grid-template-columns:70px 1fr 110px 80px;
+      padding:9px 14px; gap:10px;
+      border-top:1px solid rgba(255,255,255,0.03);
+      font-size:11.5px; color:rgba(255,255,255,0.68); align-items:center;
+    }
+    .his-pill { display:inline-flex; align-items:center; padding:2px 9px; border-radius:999px; font-size:10px; font-weight:700; }
+    .his-pill.ok { background:rgba(40,200,80,0.12); color:#4ade80; }
+    .his-pill.pen { background:rgba(91,238,252,0.1); color:#5BEEFC; }
+    .his-pill.proc { background:rgba(251,191,36,0.12); color:#fbbf24; }
+
+    /* 12 Feature cards */
+    .his-feats-wrap { position:relative; z-index:1; margin-bottom:80px; }
+    .his-feats-hd { margin-bottom:32px; }
+    .his-feats-hd h3 { color:white; font-size:clamp(22px,2.8vw,30px); font-weight:700; margin-bottom:8px; }
+    .his-feats-hd p { color:rgba(255,255,255,0.5); font-size:15px; }
+    .his-feats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .his-feat {
+      background:rgba(255,255,255,0.035); border:1px solid rgba(91,238,252,0.11);
+      border-radius:16px; padding:22px 18px;
+      transition:0.28s ease; backdrop-filter:blur(10px);
+      position:relative; overflow:hidden; cursor:default;
+    }
+    .his-feat::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:var(--grad); transform:scaleX(0); transform-origin:left;
+      transition:transform 0.35s ease;
+    }
+    .his-feat:hover { background:rgba(91,238,252,0.055); border-color:rgba(91,238,252,0.28); transform:translateY(-5px); box-shadow:0 18px 48px rgba(91,238,252,0.07); }
+    .his-feat:hover::after { transform:scaleX(1); }
+    .his-feat-ico {
+      width:44px; height:44px; border-radius:12px;
+      background:rgba(16,41,244,0.2); border:1px solid rgba(91,238,252,0.14);
+      display:grid; place-items:center; margin-bottom:14px; transition:0.28s ease;
+    }
+    .his-feat:hover .his-feat-ico { background:var(--grad); border-color:transparent; }
+    .his-feat-ico svg { width:22px; height:22px; stroke:#5BEEFC; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; transition:stroke 0.28s ease; }
+    .his-feat:hover .his-feat-ico svg { stroke:white; }
+    .his-feat h4 { font-size:13.5px; font-weight:700; color:white; margin-bottom:7px; line-height:1.25; }
+    .his-feat p { font-size:12.5px; color:rgba(255,255,255,0.46); line-height:1.55; }
+
+    /* Why different — 3-column layout (checks | title | checks) */
+    .his-why { position:relative; z-index:1; margin-bottom:80px; }
+    .his-why-grid3 {
+      display: grid;
+      grid-template-columns: 1fr 300px 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .his-why-center {
+      text-align: center;
+      padding: 36px 28px;
+      background: rgba(16,41,244,0.07);
+      border: 1px solid rgba(91,238,252,0.18);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      position: relative;
+      box-shadow: 0 0 60px rgba(16,41,244,0.18), inset 0 1px 0 rgba(91,238,252,0.1);
+    }
+    .his-why-center::before {
+      content: '';
+      position: absolute; inset: -1px; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(91,238,252,0.22), rgba(16,41,244,0.12), rgba(91,238,252,0.08));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+      padding: 1px;
+      pointer-events: none;
+    }
+    .his-why-center h3 { font-size: clamp(20px,2.2vw,26px); font-weight:800; color:white; line-height:1.15; margin-bottom:14px; }
+    .his-why-center p { color:rgba(255,255,255,0.54); font-size:13.5px; line-height:1.65; margin-bottom:22px; }
+    .his-why-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--grad);
+      box-shadow: 0 0 32px rgba(16,41,244,0.45);
+      margin: 0 auto;
+    }
+    .his-why-count b { font-size: 26px; font-weight: 900; color: white; line-height: 1; }
+    .his-why-count small { font-size: 9px; color: rgba(255,255,255,0.8); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .his-checks-col { display: flex; flex-direction: column; gap: 8px; }
+    .his-check {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px; background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(91,238,252,0.09); border-radius: 11px; transition: 0.24s ease;
+    }
+    .his-checks-col:first-child .his-check:hover { background:rgba(91,238,252,0.06); border-color:rgba(91,238,252,0.22); transform:translateX(4px); }
+    .his-checks-col:last-child .his-check:hover { background:rgba(91,238,252,0.06); border-color:rgba(91,238,252,0.22); transform:translateX(-4px); }
+    .his-chk-ico {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: rgba(91,238,252,0.14); display: grid; place-items: center;
+      color: #5BEEFC; font-size: 11px; font-weight: 900; flex-shrink: 0; margin-top: 1px;
+    }
+    .his-check span { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .his-cta { text-align:center; position:relative; z-index:1; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+    /* ── Responsive overrides ── */
+    @media (max-width: 960px) {
+      .pilares-grid { grid-template-columns: repeat(2,1fr); }
+      .sectores-grid { grid-template-columns: repeat(2,1fr); }
+      .beneficios-grid { grid-template-columns: 1fr; }
+      .hero-index { min-height: auto; padding: 80px 0 64px; }
+      .his-feats { grid-template-columns: repeat(3,1fr); }
+      .his-why-grid3 { grid-template-columns: 1fr; gap: 28px; }
+      .his-why-center { order: -1; }
+      .his-layout { grid-template-columns: 1fr; }
+      .his-nav-sidebar { display: none; }
+      .his-stat-row { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 650px) {
+      .pilares-grid, .sectores-grid { grid-template-columns: 1fr; }
+      .db-metrics { grid-template-columns: repeat(2,1fr); }
+      .db-body { grid-template-columns: 1fr; }
+      .db-chart { border-right: none; border-bottom: 1px solid rgba(91,238,252,0.08); }
+      .his-feats { grid-template-columns: repeat(2,1fr); }
+      .his-kpi { font-size: 12px; padding: 7px 14px; }
+    }
+    @media (max-width: 480px) {
+      .his-feats { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <div class="contenedor nav">
       <a href="index.html" class="logo">
-        <img class="logo-svg" src="nexus-csa-logo.svg" alt="Nexus CSA" />
+        <img class="logo-svg" src="nexus-csa-logo.svg" alt="NEXUS CSA" />
       </a>
-      <nav class="menu">
+      <nav class="menu" id="nav-menu">
         <a href="servicios.html">Servicios</a>
+        <div class="nav-dropdown" id="nav-productos">
+          <a class="nav-dropdown-toggle" href="/saludcsa" onclick="return false;" aria-haspopup="true">
+            Productos
+            <svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a class="nav-dd-item" href="/saludcsa" role="menuitem">
+              <div class="nav-dd-ico">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="nav-dd-lbl">
+                <strong>SaludCSA HIS</strong>
+                <small>Sistema de Información en Salud</small>
+              </div>
+            </a>
+          </div>
+        </div>
         <a href="planes.html">Planes</a>
         <a href="proyectos.html">Proyectos</a>
         <a href="contacto.html">Contacto</a>
       </nav>
-      <a class="btn btn-primary" href="https://wa.me/573113331074?text=Hola,%20quiero%20una%20asesor%C3%ADa%20con%20Nexus%20CSA" target="_blank">Hablar con un asesor</a>
+      <div class="nav-right">
+        <a class="btn btn-primary" href="contacto.html">Solicitar demo</a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-      <div class="contenedor hero-grid">
-        <div>
-          <span class="badge">Consultoría, Software y Automatización</span>
-          <h1>Software e inteligencia artificial para empresas que quieren <span>crecer</span></h1>
-          <p>Conectamos tu empresa con soluciones tecnológicas inteligentes. Desarrollamos software a medida, automatizamos procesos e implementamos IA para transformar tu operación.</p>
-          <div class="hero-actions">
-            <a href="planes.html" class="btn btn-primary">Ver planes y precios</a>
-            <a href="contacto.html" class="btn btn-secondary">Hablar con un asesor</a>
+    <!-- ══ HERO ══ -->
+    <section class="hero-index">
+      <div class="contenedor">
+        <div class="hero-grid">
+
+          <!-- Left: copy -->
+          <div>
+            <span class="badge">Plataforma SaaS Empresarial · Colombia</span>
+            <h1>Conectamos personas, datos y sistemas para <span class="accent">transformar</span> tu operación</h1>
+            <p class="hero-sub">Automatiza procesos, integra información y toma mejores decisiones empresariales con tecnología diseñada para empresas en crecimiento.</p>
+            <div class="hero-actions">
+              <a href="contacto.html" class="btn btn-primary">
+                <svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg>
+                Solicitar demo
+              </a>
+              <a href="servicios.html" class="btn btn-outline-white">Conocer soluciones</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>3×</strong>
+                <span>Velocidad operativa</span>
+              </div>
+              <div class="stat">
+                <strong>−73%</strong>
+                <span>Errores manuales</span>
+              </div>
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>Disponibilidad</span>
+              </div>
+            </div>
           </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <strong>IA</strong>
-              <span>Inteligencia Artificial</span>
-            </div>
-            <div class="stat">
-              <strong>Cloud</strong>
-              <span>Infraestructura escalable</span>
-            </div>
-            <div class="stat">
-              <strong>24/7</strong>
-              <span>Soporte continuo</span>
+
+          <!-- Right: dashboard visual -->
+          <div class="hero-visual">
+            <div class="hero-dashboard" aria-hidden="true">
+              <div class="db-chrome">
+                <div class="db-dots"><span></span><span></span><span></span></div>
+                <span class="db-chrome-title">NEXUS CSA · Platform</span>
+                <span class="db-live">Live</span>
+              </div>
+
+              <div class="db-metrics">
+                <div class="db-metric">
+                  <b class="cyan">+47%</b>
+                  <small>Eficiencia</small>
+                </div>
+                <div class="db-metric">
+                  <b>−73%</b>
+                  <small>Errores</small>
+                </div>
+                <div class="db-metric">
+                  <b class="cyan">24/7</b>
+                  <small>Uptime</small>
+                </div>
+                <div class="db-metric">
+                  <b>98.5%</b>
+                  <small>SLA</small>
+                </div>
+              </div>
+
+              <div class="db-body">
+                <div class="db-chart">
+                  <div class="db-chart-label">Automatizaciones activas</div>
+                  <div class="db-bars-wrap">
+                    <div class="db-bar" style="--h:58%"></div>
+                    <div class="db-bar" style="--h:72%"></div>
+                    <div class="db-bar" style="--h:64%"></div>
+                    <div class="db-bar" style="--h:85%"></div>
+                    <div class="db-bar" style="--h:78%"></div>
+                    <div class="db-bar hi" style="--h:95%"></div>
+                  </div>
+                  <div class="db-bar-months">
+                    <span>E</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+                  </div>
+                </div>
+                <div class="db-integrations">
+                  <div class="db-int-label">Conexiones activas</div>
+                  <div class="db-int">
+                    <span class="db-int-name">ERP → CRM</span>
+                    <span class="db-pill">Activo</span>
+                  </div>
+                  <div class="db-int">
+                    <span class="db-int-name">IA → WhatsApp</span>
+                    <span class="db-pill">Activo</span>
+                  </div>
+                  <div class="db-int">
+                    <span class="db-int-name">DB → Analytics</span>
+                    <span class="db-pill">Activo</span>
+                  </div>
+                  <div class="db-int">
+                    <span class="db-int-name">API → Reportes</span>
+                    <span class="db-pill">Activo</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="db-footer">
+                <span>Procesando 2,847 eventos · hoy</span>
+                <span class="db-pulse"></span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="hero-visual">
-          <img src="nexus-transparente.png" alt="Nexus CSA" class="hero-img" />
+
         </div>
       </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios">
+    <!-- ══ SALUDCSA HIS — PRODUCTO INSIGNIA ══ -->
+    <section class="his-section" id="saludcsa">
       <div class="contenedor">
-        <div class="section-title">
-          <span class="badge">Nuestras capacidades</span>
-          <h2>Tecnología inteligente para procesos más eficientes</h2>
-          <p>Más que desarrollo de software: conectamos tu empresa con soluciones que automatizan, optimizan y hacen crecer tu negocio.</p>
+
+        <!-- Header -->
+        <div class="section-title" data-anim>
+          <span class="badge his-badge">Nuestro Producto Insignia</span>
+          <h2>SaludCSA <span class="his-cyan">HIS</span></h2>
+          <p>El sistema de información en salud diseñado para transformar la gestión clínica, administrativa y ocupacional de consultorios, IPS y empresas de medicina laboral.</p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="his-kpis" data-anim>
+          <div class="his-kpi">100% Desarrollo propio</div>
+          <div class="his-kpi">14 Módulos Integrados</div>
+          <div class="his-kpi">Cloud Native · Google Cloud</div>
+          <div class="his-kpi">Multi Tenant</div>
+          <div class="his-kpi">Cumplimiento Normativa Colombiana</div>
+        </div>
+
+        <!-- Mockup CSS premium -->
+        <div class="his-mockup-wrap" data-anim>
+          <div class="his-mockup" aria-hidden="true">
+            <div class="his-app-bar">
+              <div class="his-app-dots"><span></span><span></span><span></span></div>
+              <span class="his-app-name">SaludCSA HIS · Panel Administrativo</span>
+              <span class="his-app-live">En línea</span>
+            </div>
+            <div class="his-layout">
+              <!-- Sidebar -->
+              <div class="his-nav-sidebar">
+                <div class="his-nav-sec">Principal</div>
+                <div class="his-nav-item active">
+                  <span class="his-nav-dot"></span>Dashboard
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Agenda Médica
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Historia Clínica
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Pacientes
+                </div>
+                <div class="his-nav-sec">Gestión</div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Facturación DIAN
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>RIPS
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Medicina Laboral
+                </div>
+                <div class="his-nav-item">
+                  <span class="his-nav-dot"></span>Empresas
+                </div>
+              </div>
+              <!-- Main content -->
+              <div class="his-main-area">
+                <div class="his-main-top">
+                  <h4>Dashboard · Hoy</h4>
+                  <span>Julio 6 · 2026</span>
+                </div>
+                <div class="his-stat-row">
+                  <div class="his-stat-box">
+                    <span class="his-stat-val">48</span>
+                    <div class="his-stat-lbl">Citas hoy</div>
+                  </div>
+                  <div class="his-stat-box">
+                    <span class="his-stat-val">12</span>
+                    <div class="his-stat-lbl">En espera</div>
+                  </div>
+                  <div class="his-stat-box">
+                    <span class="his-stat-val">$4.2M</span>
+                    <div class="his-stat-lbl">Facturado</div>
+                  </div>
+                  <div class="his-stat-box">
+                    <span class="his-stat-val">98%</span>
+                    <div class="his-stat-lbl">Disponibilidad</div>
+                  </div>
+                </div>
+                <div class="his-table">
+                  <div class="his-table-head">
+                    <span>Hora</span><span>Paciente</span><span>Médico</span><span>Estado</span>
+                  </div>
+                  <div class="his-table-row">
+                    <span>08:00</span><span>María García</span><span>Dr. Rodríguez</span>
+                    <span class="his-pill ok">Atendido</span>
+                  </div>
+                  <div class="his-table-row">
+                    <span>09:15</span><span>Carlos López</span><span>Dra. Martínez</span>
+                    <span class="his-pill proc">En curso</span>
+                  </div>
+                  <div class="his-table-row">
+                    <span>09:30</span><span>Ana Ruiz</span><span>Dr. Rodríguez</span>
+                    <span class="his-pill pen">Pendiente</span>
+                  </div>
+                  <div class="his-table-row">
+                    <span>10:00</span><span>Luis Torres</span><span>Dra. Herrera</span>
+                    <span class="his-pill pen">Pendiente</span>
+                  </div>
+                  <div class="his-table-row">
+                    <span>10:30</span><span>Pilar Soto</span><span>Dr. Acosta</span>
+                    <span class="his-pill pen">Pendiente</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12 Feature cards -->
+        <div class="his-feats-wrap" data-anim>
+          <div class="his-feats-hd">
+            <h3>14 módulos integrados en una sola plataforma</h3>
+            <p>Todo lo que tu consultorio, IPS o empresa necesita, sin aplicaciones externas.</p>
+          </div>
+          <div class="his-feats">
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h4>Historia Clínica Electrónica</h4>
+              <p>Registro digital completo con plantillas especializadas, firma digital y respaldo legal.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <h4>Agenda Multi-Médico</h4>
+              <p>Programación de citas para múltiples médicos, consultorios y sedes en tiempo real.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h4>Medicina Laboral</h4>
+              <p>Exámenes médicos ocupacionales, certificados de aptitud y gestión de empresas vinculadas.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h4>Facturación Electrónica DIAN</h4>
+              <p>Generación y validación de facturas electrónicas en tiempo real, cumplimiento total DIAN.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h4>RIPS Automáticos</h4>
+              <p>Generación conforme a Resolución 3374 del Ministerio de Salud, sin digitación manual.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <h4>Dashboard Administrativo</h4>
+              <p>Métricas en tiempo real: ingresos, atenciones, ocupación y rendimiento por médico.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h4>Gestión de Empresas</h4>
+              <p>Empresas cliente, convenios, tarifarios y seguimiento de pacientes vinculados.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h4>Gestión de Pacientes</h4>
+              <p>Expediente completo: datos demográficos, historial, estudios y atenciones anteriores.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h4>Interconsultas</h4>
+              <p>Referencia y contrarreferencia entre especialistas con seguimiento integrado al expediente.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h4>Seguridad de Datos</h4>
+              <p>Encriptación AES-256, auditoría de accesos y copias automáticas en la nube.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <h4>Arquitectura Multi-Tenant</h4>
+              <p>Una sola plataforma para múltiples consultorios, sedes y empresas, con aislamiento total.</p>
+            </div>
+
+            <div class="his-feat">
+              <div class="his-feat-ico">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h4>Infraestructura Google Cloud</h4>
+              <p>Alta disponibilidad, escalado automático y SLA garantizado sobre infraestructura Google.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Por qué diferente -->
+        <div class="his-why" data-anim>
+          <div class="his-why-grid3">
+
+            <!-- Checks izquierda (1-5) -->
+            <div class="his-checks-col">
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Desarrollo 100% colombiano, diseñado para INVIMA, Minsalud y DIAN</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Facturación Electrónica integrada con validación DIAN en tiempo real</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>RIPS automáticos según Resolución 3374 del Ministerio de Salud</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Historia Clínica Electrónica con firma digital y valor probatorio legal</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Multi-Tenant: múltiples sedes y empresas con aislamiento total</span></div>
+            </div>
+
+            <!-- Centro: título -->
+            <div class="his-why-center">
+              <h3>¿Por qué SaludCSA HIS <span class="his-cyan">es diferente?</span></h3>
+              <p>No es un sistema genérico adaptado para salud. Construido desde cero para el sector médico colombiano.</p>
+              <div class="his-why-count">
+                <b>10</b>
+                <small>razones</small>
+              </div>
+            </div>
+
+            <!-- Checks derecha (6-10) -->
+            <div class="his-checks-col">
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Infraestructura 100% en Google Cloud con alta disponibilidad 24/7</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Módulo de Medicina Laboral para salud ocupacional empresarial</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Gestión integral: desde la cita hasta la factura, sin apps externas</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Dashboard en tiempo real con métricas clínicas y financieras</span></div>
+              <div class="his-check"><div class="his-chk-ico">✓</div><span>Soporte técnico especializado con equipo colombiano dedicado</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="his-cta" data-anim>
+          <a href="/saludcsa" class="btn btn-primary">
+            <svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg>
+            Conocer SaludCSA HIS
+          </a>
+          <a href="contacto.html" class="btn btn-outline-white">Solicitar una demostración</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ PILARES ══ -->
+    <section class="pilares-section">
+      <div class="contenedor">
+        <div class="section-title" data-anim>
+          <span class="badge">Por qué NEXUS CSA</span>
+          <h2>Una plataforma. Cuatro capacidades esenciales.</h2>
+          <p>Integramos todo lo que tu empresa necesita para operar con inteligencia, eficiencia y control total.</p>
+        </div>
+        <div class="pilares-grid">
+
+          <div class="pilar-card" data-anim>
+            <div class="pilar-icon">
+              <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <span class="pilar-tag">01</span>
+            <h3>Conectamos personas y equipos</h3>
+            <p>Unificamos tu operación en una plataforma central. Equipos alineados, información en tiempo real y decisiones más rápidas.</p>
+          </div>
+
+          <div class="pilar-card" data-anim>
+            <div class="pilar-icon">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <span class="pilar-tag">02</span>
+            <h3>Integramos datos y sistemas</h3>
+            <p>Conectamos tus aplicaciones, bases de datos y plataformas para eliminar silos y centralizar la información de tu negocio.</p>
+          </div>
+
+          <div class="pilar-card" data-anim>
+            <div class="pilar-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="pilar-tag">03</span>
+            <h3>Protegemos la información y la operación</h3>
+            <p>Sistemas robustos con continuidad 24/7, respaldo automático y controles de seguridad para proteger lo que más importa.</p>
+          </div>
+
+          <div class="pilar-card" data-anim>
+            <div class="pilar-icon">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <span class="pilar-tag">04</span>
+            <h3>Impulsamos mejores decisiones y resultados</h3>
+            <p>Dashboards, analítica e inteligencia artificial que convierten datos en información accionable para líderes empresariales.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SOLUCIONES ══ -->
+    <section id="soluciones">
+      <div class="contenedor">
+        <div class="section-title" data-anim>
+          <span class="badge">Soluciones</span>
+          <h2>Tecnología inteligente para cada reto empresarial</h2>
+          <p>Cada solución está diseñada para generar impacto real: menos tiempo manual, más control, mejores resultados.</p>
         </div>
         <div class="cards">
-          <article class="card">
+
+          <article class="card" data-anim>
             <div class="icon"><svg class="ico"><use href="icons.svg#ic-bot"/></svg></div>
-            <h3>Inteligencia Artificial</h3>
-            <p>Implementamos IA para automatizar decisiones, analizar datos y mejorar la eficiencia operativa de tu empresa.</p>
+            <h3>IA Conversacional</h3>
+            <p>Chatbots y asistentes inteligentes que atienden clientes, califican leads y automatizan la primera línea de atención 24/7.</p>
           </article>
-          <article class="card">
+
+          <article class="card" data-anim>
             <div class="icon"><svg class="ico"><use href="icons.svg#ic-settings"/></svg></div>
             <h3>Automatización de Procesos</h3>
-            <p>Eliminamos tareas repetitivas y optimizamos flujos de trabajo para que tu equipo se enfoque en lo que importa.</p>
+            <p>Eliminamos tareas repetitivas con flujos automáticos. Tu equipo se enfoca en lo estratégico, la tecnología hace el resto.</p>
           </article>
-          <article class="card">
+
+          <article class="card" data-anim>
             <div class="icon"><svg class="ico"><use href="icons.svg#ic-monitor"/></svg></div>
             <h3>Software a Medida</h3>
-            <p>Desarrollamos exactamente la solución que tu negocio necesita, sin código genérico ni funcionalidades innecesarias.</p>
+            <p>Desarrollamos exactamente lo que necesitas. Sin código genérico ni funciones innecesarias. Soluciones que encajan en tu operación.</p>
           </article>
-          <article class="card">
-            <div class="icon"><svg class="ico"><use href="icons.svg#ic-cloud"/></svg></div>
-            <h3>Soluciones Cloud</h3>
-            <p>Infraestructura escalable, segura y siempre disponible en la nube para que tu negocio opere sin límites.</p>
-          </article>
-          <article class="card">
+
+          <article class="card" data-anim>
             <div class="icon"><svg class="ico"><use href="icons.svg#ic-link"/></svg></div>
             <h3>Integración de Sistemas</h3>
-            <p>Conectamos tus aplicaciones, plataformas y bases de datos para centralizar la información y eliminar silos.</p>
+            <p>Conectamos ERP, CRM, e-commerce, WhatsApp y más. Información centralizada, sin duplicados y en tiempo real.</p>
           </article>
-          <article class="card">
+
+          <article class="card" data-anim>
+            <div class="icon"><svg class="ico"><use href="icons.svg#ic-chart"/></svg></div>
+            <h3>Analytics e Inteligencia Empresarial</h3>
+            <p>Dashboards, reportes automatizados y modelos predictivos que te dan visibilidad total del negocio para decidir con datos.</p>
+          </article>
+
+          <article class="card" data-anim>
             <div class="icon"><svg class="ico"><use href="icons.svg#ic-shield"/></svg></div>
             <h3>Seguridad y Continuidad</h3>
-            <p>Sistemas robustos, seguros y con soporte continuo para garantizar la operación 24/7 de tu negocio.</p>
+            <p>Arquitectura cloud robusta, respaldos automáticos y monitoreo continuo para garantizar operación ininterrumpida.</p>
           </article>
+
         </div>
-        <div style="text-align:center; margin-top:36px;">
+        <div style="text-align:center; margin-top:40px;" data-anim>
           <a href="servicios.html" class="btn btn-secondary">Ver todos los servicios <svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg></a>
         </div>
       </div>
     </section>
 
-    <!-- Proceso -->
+    <!-- ══ PROCESO ══ -->
     <section class="bg-alt" id="proceso">
       <div class="contenedor">
-        <div class="section-title">
+        <div class="section-title" data-anim>
           <span class="badge">Metodología</span>
-          <h2>Proceso claro, ágil y orientado a resultados</h2>
-          <p>Trabajamos con una ruta ordenada para garantizar que cada proyecto entregue valor real a tu empresa.</p>
+          <h2>De la idea al resultado en 4 pasos</h2>
+          <p>Un proceso claro y ágil para garantizar que cada implementación entregue valor real y medible desde el primer día.</p>
         </div>
         <div class="proceso">
-          <div class="paso">
+          <div class="paso" data-anim>
             <div class="paso-num">1</div>
             <h3>Diagnóstico</h3>
             <p>Analizamos tu empresa, procesos actuales y objetivos para diseñar la solución tecnológica óptima.</p>
           </div>
-          <div class="paso">
+          <div class="paso" data-anim>
             <div class="paso-num">2</div>
             <h3>Diseño de Solución</h3>
-            <p>Definimos la arquitectura técnica, tecnologías a usar, hitos y el plan de implementación.</p>
+            <p>Definimos la arquitectura, tecnologías, hitos y el plan de implementación con tiempos y entregables claros.</p>
           </div>
-          <div class="paso">
+          <div class="paso" data-anim>
             <div class="paso-num">3</div>
-            <h3>Desarrollo e Implementación</h3>
-            <p>Construimos la solución con metodologías ágiles, pruebas continuas y revisiones contigo.</p>
+            <h3>Implementación Ágil</h3>
+            <p>Construimos con metodologías ágiles, pruebas continuas y entregas iterativas con tu equipo como protagonista.</p>
           </div>
-          <div class="paso">
+          <div class="paso" data-anim>
             <div class="paso-num">4</div>
-            <h3>Operación y Crecimiento</h3>
-            <p>Desplegamos, capacitamos a tu equipo y acompañamos la operación con soporte y mejoras continuas.</p>
+            <h3>Operación y Escala</h3>
+            <p>Desplegamos, capacitamos y acompañamos con soporte continuo para crecer junto a tu negocio.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Proyectos preview -->
-    <section>
+    <!-- ══ BENEFICIOS ══ -->
+    <section id="beneficios">
       <div class="contenedor">
-        <div class="section-title">
+        <div class="section-title" data-anim>
+          <span class="badge">Beneficios</span>
+          <h2>Lo que NEXUS CSA genera en tu empresa</h2>
+          <p>Resultados concretos que nuestros clientes han experimentado al implementar nuestras soluciones.</p>
+        </div>
+        <div class="beneficios-grid" data-anim>
+          <div class="beneficio">
+            <div class="beneficio-num">1</div>
+            <div>
+              <h4>Reducción de costos operativos</h4>
+              <p>Automatizar procesos manuales elimina errores, reduce tiempos y libera recursos para tareas de mayor valor.</p>
+            </div>
+          </div>
+          <div class="beneficio">
+            <div class="beneficio-num">2</div>
+            <div>
+              <h4>Decisiones más rápidas y con datos</h4>
+              <p>Acceso en tiempo real a métricas clave del negocio para que líderes y equipos decidan con información, no con intuición.</p>
+            </div>
+          </div>
+          <div class="beneficio">
+            <div class="beneficio-num">3</div>
+            <div>
+              <h4>Atención al cliente 24/7 sin costo extra</h4>
+              <p>Chatbots con IA que responden, califican y atienden sin intervención humana, disponibles siempre.</p>
+            </div>
+          </div>
+          <div class="beneficio">
+            <div class="beneficio-num">4</div>
+            <div>
+              <h4>Sistemas conectados, operación fluida</h4>
+              <p>Información centralizada y sincronizada entre todas las herramientas que tu empresa ya usa hoy.</p>
+            </div>
+          </div>
+          <div class="beneficio">
+            <div class="beneficio-num">5</div>
+            <div>
+              <h4>Escalabilidad sin fricciones</h4>
+              <p>Soluciones cloud que crecen con tu empresa. Más usuarios, más datos, más procesos — sin cambiar de plataforma.</p>
+            </div>
+          </div>
+          <div class="beneficio">
+            <div class="beneficio-num">6</div>
+            <div>
+              <h4>Seguridad y continuidad garantizadas</h4>
+              <p>Protección de datos, respaldo automático y monitoreo continuo para que tu operación nunca se detenga.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTORES ══ -->
+    <section class="bg-alt" id="sectores">
+      <div class="contenedor">
+        <div class="section-title" data-anim>
+          <span class="badge">Sectores</span>
+          <h2>Experiencia en múltiples industrias</h2>
+          <p>Diseñamos soluciones adaptadas a los retos específicos de cada sector, con conocimiento profundo del negocio.</p>
+        </div>
+        <div class="sectores-grid" data-anim>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-stethoscope"/></svg></div>
+            Salud y clínicas
+          </div>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-graduation-cap"/></svg></div>
+            Educación y formación
+          </div>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-chart"/></svg></div>
+            Retail y comercio
+          </div>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-package"/></svg></div>
+            Logística y distribución
+          </div>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-monitor"/></svg></div>
+            Servicios profesionales
+          </div>
+          <div class="sector-item">
+            <div class="sector-icon"><svg class="ico"><use href="icons.svg#ic-settings"/></svg></div>
+            Manufactura e industria
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PROYECTOS ══ -->
+    <section id="proyectos">
+      <div class="contenedor">
+        <div class="section-title" data-anim>
           <span class="badge">Portfolio</span>
           <h2>Proyectos que generan resultados</h2>
-          <p>Soluciones reales entregadas a empresas que decidieron transformar su operación.</p>
+          <p>Soluciones reales entregadas a empresas que decidieron transformar su operación con tecnología inteligente.</p>
         </div>
         <div class="proyectos-grid">
-          <article class="proyecto-card">
+
+          <article class="proyecto-card" data-anim>
+            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-stethoscope"/></svg></div>
+            <div class="proyecto-cuerpo">
+              <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
+              <p class="proyecto-sector">Salud · Consultorios médicos</p>
+              <h3>Chatbot IA para Consultorios</h3>
+              <p>Asistente inteligente que agenda citas, responde preguntas y orienta pacientes 24/7, reduciendo la carga de recepción en un 73%.</p>
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">IA</span>
+                <span class="tech-tag">WhatsApp</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proyecto-card" data-anim>
             <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-package"/></svg></div>
             <div class="proyecto-cuerpo">
               <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
               <p class="proyecto-sector">Distribución y logística</p>
               <h3>Sistema de Gestión de Inventarios</h3>
-              <p>Plataforma web que redujo errores de inventario en un 80% con control en tiempo real.</p>
+              <p>Control en tiempo real con alertas automáticas, reportes y gestión de proveedores. Redujo errores de inventario en un 80%.</p>
               <div class="tech-tags">
                 <span class="tech-tag">React</span>
                 <span class="tech-tag">Node.js</span>
@@ -168,50 +1248,38 @@
               </div>
             </div>
           </article>
-          <article class="proyecto-card">
-            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-bot"/></svg></div>
+
+          <article class="proyecto-card" data-anim>
+            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-chart"/></svg></div>
             <div class="proyecto-cuerpo">
               <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
-              <p class="proyecto-sector">Servicios al cliente</p>
-              <h3>Chatbot IA para Atención al Cliente</h3>
-              <p>Asistente inteligente que atiende el 70% de consultas sin intervención humana, 24/7.</p>
+              <p class="proyecto-sector">Retail y comercio</p>
+              <h3>Dashboard de Analítica de Ventas</h3>
+              <p>Panel de control con métricas en tiempo real, productos más rentables, tendencias y predicciones integrado con POS.</p>
               <div class="tech-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">GPT-4</span>
-                <span class="tech-tag">WhatsApp API</span>
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">BigQuery</span>
+                <span class="tech-tag">BI</span>
               </div>
             </div>
           </article>
-          <article class="proyecto-card">
-            <div class="proyecto-imagen"><svg class="ico"><use href="icons.svg#ic-settings"/></svg></div>
-            <div class="proyecto-cuerpo">
-              <span class="estado completado"><svg class="ico"><use href="icons.svg#ic-check"/></svg> Completado</span>
-              <p class="proyecto-sector">Contabilidad y finanzas</p>
-              <h3>Automatización de Facturación</h3>
-              <p>Flujo automático que eliminó 12 horas semanales de trabajo manual del equipo contable.</p>
-              <div class="tech-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">RPA</span>
-                <span class="tech-tag">DIAN API</span>
-              </div>
-            </div>
-          </article>
+
         </div>
-        <div style="text-align:center; margin-top:36px;">
+        <div style="text-align:center; margin-top:40px;" data-anim>
           <a href="proyectos.html" class="btn btn-secondary">Ver todos los proyectos <svg class="ico"><use href="icons.svg#ic-arrow-right"/></svg></a>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ══ CTA FINAL ══ -->
     <section>
-      <div class="contenedor">
+      <div class="contenedor" data-anim>
         <div class="cta-final">
           <div>
-            <h2>Transforma tu empresa con tecnología inteligente</h2>
-            <p>Solicita una consultoría y descubre cómo el software, la automatización y la IA pueden impulsar tu negocio.</p>
+            <h2>¿Tu empresa lista para dar el siguiente paso?</h2>
+            <p>Agenda una consultoría y descubre cómo NEXUS CSA puede transformar tu operación con tecnología inteligente.</p>
           </div>
-          <a class="btn btn-primary" href="contacto.html">Hablar con un asesor</a>
+          <a class="btn btn-primary" href="contacto.html">Agendar consultoría</a>
         </div>
       </div>
     </section>
@@ -221,17 +1289,55 @@
   <footer>
     <div class="contenedor footer-inner">
       <div class="footer-logo">
-        <img src="nexus-csa-logo.svg" alt="Nexus CSA" style="height:60px; width:auto;" />
+        <img src="nexus-csa-logo.svg" alt="NEXUS CSA" />
       </div>
-      <p>© 2026 Nexus CSA · Consultoría, Software y Automatización · Tecnología inteligente para empresas que quieren crecer.</p>
+      <p>© 2026 NEXUS CSA · Consultoría, Software y Automatización · Soluciones que conectan, tecnologías que transforman.</p>
     </div>
   </footer>
 
-  <a class="whatsapp" href="https://wa.me/573113331074?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Nexus%20CSA" target="_blank" aria-label="WhatsApp">
+  <a class="whatsapp" href="https://wa.me/573113331074?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20NEXUS%20CSA" target="_blank" aria-label="WhatsApp">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
   <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('a:not(.nav-dropdown-toggle)').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+
+    // Nav dropdown: toggle on click (mobile), close on outside click
+    const navProd = document.getElementById('nav-productos');
+    if (navProd) {
+      navProd.querySelector('.nav-dropdown-toggle').addEventListener('click', (e) => {
+        e.preventDefault();
+        navProd.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!navProd.contains(e.target)) navProd.classList.remove('open');
+      });
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(e) {
         const t = document.querySelector(this.getAttribute('href'));
@@ -239,5 +1345,6 @@
       });
     });
   </script>
+
 </body>
 </html>

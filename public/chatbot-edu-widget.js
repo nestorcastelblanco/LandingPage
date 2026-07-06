@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const WEBHOOK_URL = 'https://n8n.srv1227996.hstgr.cloud/webhook/sysdatec-chat';
+  const WEBHOOK_URL = 'https://n8n.srv1227996.hstgr.cloud/webhook/3d40cd98-2043-42f5-b4ad-2fc0c6a2cb7d';
   const SESSION_KEY = 'sds_edu_session_id';
   const REQUEST_TIMEOUT_MS = 60000;
   const SALUDO_FALLBACK =
